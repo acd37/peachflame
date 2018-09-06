@@ -1,18 +1,21 @@
 import React, { Component, Fragment } from "react";
 import logo from "../images/peachflame.png";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
   root: {
-    flexGrow: 1,
-    paddingBottom: 80
+    flexGrow: 1
+  },
+  container: {
+    marginBottom: 160
   },
   card: {
     padding: "20px",
-    height: 375,
-    width: 300,
-    margin: 20,
+    height: 300,
+    maxWidth: 500,
+    margin: 40,
+    marginTop: 0,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -30,6 +33,23 @@ const styles = {
     color: "rgb(110, 120, 134)",
     lineHeight: 1.6,
     textAlign: "center"
+  },
+  snippetHeader: {
+    color: "rgb(37,56,88)",
+    fontSize: "1.5em",
+    fontWeight: 600
+  },
+  snippet: {
+    color: "rgb(37,56,88)",
+    fontSize: "1em",
+    marginBottom: 20
+  },
+  textBox: {
+    width: 400,
+    marginTop: 75
+  },
+  gridRow: {
+    marginBottom: 200
   }
 };
 
@@ -39,11 +59,11 @@ class Products extends Component {
 
     return (
       <Fragment>
-        <div className="productsContainer">
-          <Grid container className={classes.root}>
-            <Grid item xs={12}>
-              <Grid container justify="center">
-                <Paper className={classes.card} elevation={2}>
+        <div className={classes.container}>
+          <Grid container className={classes.root} justify="center">
+            <Grid style={styles.gridRow} item xs={10}>
+              <Grid container justify="space-around">
+                <Paper className={classes.card} elevation={24}>
                   <img className={classes.cardImage} src={logo} />
                   <h2 className={classes.cardTitle}> Editorial </h2>
                   <p className={classes.cardText}>
@@ -53,7 +73,35 @@ class Products extends Component {
                     it is you're working on.{" "}
                   </p>
                 </Paper>
-                <Paper className={classes.card} elevation={2}>
+                <div style={styles.textBox}>
+                  <Typography style={styles.snippetHeader}>Edit</Typography>
+                  <Typography style={styles.snippet}>
+                    Get the clarity you need, fix up your work, and make it
+                    better than ever before.
+                  </Typography>
+                  <Typography style={styles.snippetHeader}>Publish</Typography>
+                  <Typography style={styles.snippet}>
+                    We'll help you find a publisher that fits your needs.
+                  </Typography>
+                </div>
+              </Grid>
+            </Grid>
+            <Grid style={styles.gridRow} item xs={10}>
+              <Grid container justify="space-around">
+                <div style={styles.textBox}>
+                  <Typography style={styles.snippetHeader}>Create</Typography>
+                  <Typography style={styles.snippet}>
+                    Need help finding the right words? Or images? We can help!
+                  </Typography>
+                  <Typography style={styles.snippetHeader}>
+                    Publicize
+                  </Typography>
+                  <Typography style={styles.snippet}>
+                    Once your piece is finished, it's time to get it out there
+                    for the world to see.
+                  </Typography>
+                </div>
+                <Paper className={classes.card} elevation={24}>
                   <img className={classes.cardImage} src={logo} />
                   <h2 className={classes.cardTitle}> Content Creation </h2>
                   <p className={classes.cardText}>
@@ -63,8 +111,11 @@ class Products extends Component {
                     professional experience in traffic and revenue growth.{" "}
                   </p>
                 </Paper>
-
-                <Paper className={classes.card} elevation={2}>
+              </Grid>
+            </Grid>
+            <Grid style={styles.gridRow} item xs={10}>
+              <Grid container justify="space-around">
+                <Paper className={classes.card} elevation={24}>
                   <img className={classes.cardImage} src={logo} />
                   <h2 className={classes.cardTitle}> Web Development </h2>
                   <p className={classes.cardText}>
@@ -75,6 +126,19 @@ class Products extends Component {
                     after product launch.{" "}
                   </p>
                 </Paper>
+                <div style={styles.textBox}>
+                  <Typography style={styles.snippetHeader}>Plan</Typography>
+                  <Typography style={styles.snippet}>
+                    Making a good product plan is just as important as
+                    developing the product. We'll work with you on your needs.
+                  </Typography>
+                  <Typography style={styles.snippetHeader}>Develop</Typography>
+                  <Typography style={styles.snippet}>
+                    Then we develop your product using the technologies{" "}
+                    <strong>you</strong> are comfortable with. We'll even help
+                    get it published on the interweb!
+                  </Typography>
+                </div>
               </Grid>
             </Grid>
           </Grid>

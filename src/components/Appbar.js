@@ -1,36 +1,65 @@
-import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import React, { Fragment } from "react";
+import { Toolbar, Typography, Button, Grid, AppBar } from "@material-ui/core";
+import logo from "../images/peachflame.png";
 
 const styles = {
-    flex: {
-        flexGrow: 1,
-    },
-    appBar: {
-        backgroundColor: "transparent",
-        boxShadow: "none"
-    },
-    appBarButton: {
-        color: "#fff",
-        fontWeight: '800',
-        fontSize: "1em"
-    }
-}
+  flex: {
+    flexGrow: 1
+  },
+  logo: {
+    maxHeight: 40,
+    marginRight: 10
+  },
+  logoText: {
+    margin: 30,
+    marginLeft: 0,
+    fontWeight: "800",
+    fontSize: 24,
+    color: "rgb(37,56,88)"
+  },
+  appBar: {
+    backgroundColor: "rgb(244, 245, 247)",
+    boxShadow: "none"
+  },
+  appBarButton: {
+    color: "rgb(37,56,88)",
+    fontSize: "1em",
+    textTransform: "capitalize"
+  },
+  separator: {
+    height: 120,
+    backgroundColor: "#fff"
+  }
+};
 
 export default function Appbar() {
-        return(
-
-            <AppBar style={styles.appBar} position="absolute">
-                <Toolbar>
-                    <Button style={styles.appBarButton} color="inherit">About</Button>
-                    <Button style={styles.appBarButton} color="inherit">Editing</Button>
-                    <Button style={styles.appBarButton} color="inherit">Web Design</Button>
-                    <Button style={styles.appBarButton} color="inherit">Tools</Button>
-                </Toolbar>
-            </AppBar>
-
-
-        );
+  return (
+    <Fragment>
+      <AppBar style={styles.appBar} position="absolute">
+        <Grid item xs={8}>
+          <Grid container justify="center">
+            <Toolbar>
+              <img style={styles.logo} src={logo} />
+              <Typography style={styles.logoText} variant="title">
+                PeachFlame
+              </Typography>
+              <Button style={styles.appBarButton} color="inherit">
+                About
+              </Button>
+              <Button style={styles.appBarButton} color="inherit">
+                Editing
+              </Button>
+              <Button style={styles.appBarButton} color="inherit">
+                Web Design
+              </Button>
+              <Button style={styles.appBarButton} color="inherit">
+                Tools
+              </Button>
+            </Toolbar>
+          </Grid>
+        </Grid>
+      </AppBar>
+      <div style={styles.separator} />
+    </Fragment>
+  );
 }
