@@ -4,6 +4,7 @@ import "./App.css";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Appbar from "./components/Appbar";
+import BottomNav from "./components/BottomNav";
 import Landing from "./pages/landing";
 import About from "./pages/about";
 import Editing from "./pages/editing";
@@ -38,6 +39,7 @@ class App extends Component {
                 <Route path="/development" component={Development} />
                 <Route component={NotFound} />
               </Switch>
+              <BottomNav />
             </Fragment>
           </Router>
         </div>

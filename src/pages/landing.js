@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import Header from "../components/Header";
 import Products from "../components/Products";
 import WeDo from "../components/WeDo";
-import BottomNav from "../components/BottomNav";
 import Tools from "../components/Tools";
 
 class Landing extends Component {
@@ -13,7 +12,6 @@ class Landing extends Component {
         <WeDo />
         <Products />
         <Tools />
-        <BottomNav />
       </Fragment>
     );
   }

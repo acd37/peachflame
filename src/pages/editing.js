@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Banner from "../components/Banner";
-import { Typography, Button, Grid, Paper } from "@material-ui/core";
+import { Typography, Button, Grid, Paper, Divider } from "@material-ui/core";
 
 const styles = {
   container: {
@@ -36,6 +36,9 @@ const styles = {
   button: {
     marginTop: 20,
     marginBottom: 20
+  },
+  divider: {
+    marginBottom: 20
   }
 };
 
@@ -52,6 +55,7 @@ class Editing extends Component {
                 <Typography style={styles.textSubHeader}>
                   Reader Report
                 </Typography>
+                <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A high-level assessment of your manuscript, with actionable
                   advice for improvement. You will receive:
@@ -76,6 +80,7 @@ class Editing extends Component {
                 <Typography style={styles.textSubHeader}>
                   Developmental Edit
                 </Typography>
+                <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A detailed edit of your entire manuscript, focusing on
                   structural and conceptual issues over grammatical errors. You
@@ -100,6 +105,7 @@ class Editing extends Component {
               </Paper>
               <Paper style={styles.productOffering} elevation={8}>
                 <Typography style={styles.textSubHeader}>Line Edit</Typography>
+                <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A line-by-line style edit of your entire manuscript or a
                   select portion, focusing on sentence revision and polishing.
@@ -129,6 +135,7 @@ class Editing extends Component {
                 <Typography style={styles.textSubHeader}>
                   Copy Edit & Proofread
                 </Typography>
+                <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A line-by-line grammatical edit of your entire manuscript or a
                   select portion, focusing on technical errors like misspelled
@@ -158,6 +165,7 @@ class Editing extends Component {
                 <Typography style={styles.textSubHeader}>
                   Book Marketing Plan
                 </Typography>
+                <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A step-by-step plan that recommends marketing tactics, along
                   with a proposed timeline, tailored to your book.
