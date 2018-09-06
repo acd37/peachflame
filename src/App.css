@@ -1,0 +1,24 @@
+.App {
+	background: #eee;
+	font-family: 'Raleway', sans-serif;
+}
+
+.App-logo {
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
+}
+
+.App-products {
+	min-height: 400px;
+	padding: 20px;
+}
+
+h1 {
+	font-size: 5em;
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+	border-style: ;
+}
