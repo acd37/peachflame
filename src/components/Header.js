@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import Appbar from "./Appbar";
 import logo from "../images/peachflame.png";
 
 const styles = {
@@ -41,8 +40,6 @@ class Header extends Component {
   render() {
     return (
       <Fragment>
-        <Appbar />
-
         <div style={styles.appHeader}>
           <h1 style={styles.header}>
             {" "}

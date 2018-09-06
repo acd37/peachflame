@@ -31,9 +31,8 @@ class WeDo extends Component {
         <Grid item xs={8}>
           <Grid container justify="center">
             <Typography style={styles.text}>
-              From editing, to content creation, to putting you and your product
-              online, we can help with any part of your writing and branding
-              experience.
+              PeachFlame is a creative studio that offers book editing, web
+              design, and marketing services.
             </Typography>
             <Button
               style={styles.button}

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Toolbar, Typography, Button, Grid, AppBar } from "@material-ui/core";
 import logo from "../images/peachflame.png";
+import { Link } from "react-router-dom";
 
 const styles = {
   flex: {
@@ -24,11 +25,8 @@ const styles = {
   appBarButton: {
     color: "rgb(37,56,88)",
     fontSize: "1em",
-    textTransform: "capitalize"
-  },
-  separator: {
-    height: 120,
-    backgroundColor: "#fff"
+    textTransform: "capitalize",
+    textDecoration: "none"
   }
 };
 
@@ -43,23 +41,31 @@ export default function Appbar() {
               <Typography style={styles.logoText} variant="title">
                 PeachFlame
               </Typography>
-              <Button style={styles.appBarButton} color="inherit">
-                About
+              <Button color="inherit">
+                <Link style={styles.appBarButton} to="/">
+                  Home
+                </Link>
               </Button>
-              <Button style={styles.appBarButton} color="inherit">
-                Editing
+
+              <Button color="inherit">
+                <Link style={styles.appBarButton} to="/editing">
+                  Editing
+                </Link>
               </Button>
-              <Button style={styles.appBarButton} color="inherit">
-                Web Design
+              <Button color="inherit">
+                <Link style={styles.appBarButton} to="/development">
+                  Web Design
+                </Link>
               </Button>
-              <Button style={styles.appBarButton} color="inherit">
-                Tools
+              <Button color="inherit">
+                <Link style={styles.appBarButton} to="/about">
+                  About
+                </Link>
               </Button>
             </Toolbar>
           </Grid>
         </Grid>
       </AppBar>
-      <div style={styles.separator} />
     </Fragment>
   );
 }

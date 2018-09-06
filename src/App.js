@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import "./App.css";
-import Header from "./components/Header";
-import Products from "./components/Products";
-import WeDo from "./components/WeDo";
-import BottomNav from "./components/BottomNav";
-import Tools from "./components/Tools";
+
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Appbar from "./components/Appbar";
+import Landing from "./pages/landing";
+import About from "./pages/about";
+import Editing from "./pages/editing";
+import Development from "./pages/development";
+import NotFound from "./pages/404";
 
 const theme = createMuiTheme({
   palette: {
@@ -25,11 +28,18 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <Header />
-          <WeDo />
-          <Products />
-          <Tools />
-          <BottomNav />
+          <Router>
+            <Fragment>
+              <Appbar />
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route path="/about" component={About} />
+                <Route path="/editing" component={Editing} />
+                <Route path="/development" component={Development} />
+                <Route component={NotFound} />
+              </Switch>
+            </Fragment>
+          </Router>
         </div>
       </MuiThemeProvider>
     );
