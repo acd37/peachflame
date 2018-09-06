@@ -73,7 +73,7 @@ class Editing extends Component {
                   color="primary"
                   size="large"
                 >
-                  Get Started
+                  Get more details
                 </Button>
               </Paper>
               <Paper style={styles.productOffering} elevation={8}>
@@ -100,7 +100,7 @@ class Editing extends Component {
                   color="primary"
                   size="large"
                 >
-                  Get Started
+                  Get more details
                 </Button>
               </Paper>
               <Paper style={styles.productOffering} elevation={8}>
@@ -128,7 +128,7 @@ class Editing extends Component {
                   color="primary"
                   size="large"
                 >
-                  Get Started
+                  Get more details
                 </Button>
               </Paper>
               <Paper style={styles.productOffering} elevation={8}>
@@ -158,7 +158,7 @@ class Editing extends Component {
                   color="primary"
                   size="large"
                 >
-                  Get Started
+                  Get more details
                 </Button>
               </Paper>
               <Paper style={styles.productOffering} elevation={8}>
@@ -176,7 +176,7 @@ class Editing extends Component {
                   color="primary"
                   size="large"
                 >
-                  Get Started
+                  Get more details
                 </Button>
               </Paper>
             </div>
