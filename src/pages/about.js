@@ -3,6 +3,7 @@ import logo from "../images/peachflame.png";
 import { Grid, Paper, Typography } from "@material-ui/core";
 import Banner from "../components/Banner";
 import alec from "../images/alec.jpg";
+import kelsey from "../images/kelsey.jpg";
 
 const styles = {
   root: {
@@ -13,7 +14,7 @@ const styles = {
   },
   card: {
     padding: "40px",
-    height: 600,
+    height: 620,
     maxWidth: 500,
     margin: 40,
     display: "flex",
@@ -71,10 +72,7 @@ class About extends Component {
             <Grid style={styles.gridRow} item xs={10}>
               <Grid container justify="space-around">
                 <Paper style={styles.card} elevation={24}>
-                  <img
-                    style={styles.profileImage}
-                    src="https://via.placeholder.com/150x150"
-                  />
+                  <img style={styles.profileImage} src={kelsey} />
                   <h2 style={styles.cardTitle}> Kelsey </h2>
                   <p style={styles.cardText}>
                     My Myers-Briggs personality type is INFJ, often called “The
@@ -83,31 +81,19 @@ class About extends Component {
                     unique cross-section of skills in the publishing world.
                   </p>
                   <p style={styles.cardText}>
-                    My detour into digital marketing taught me how to guide
-                    projects from ideation to execution, then promote those
-                    projects to editors at top-tier digital publications. Every
-                    day I make tough judgment calls about whether an idea is
-                    marketable and tenable.{" "}
-                  </p>
-
-                  <p style={styles.cardText}>
                     My background includes freelance work editing fiction and
-                    non-fiction, writing online articles, and more recently even
-                    reviewing books; digital media experience managing a
-                    worldwide network of more than 6,000 writers, searching for
-                    stories with potential and teaming up with writers to
-                    improve their craft; and editorial experience in a
-                    publishing house, reading and evaluating manuscripts, making
-                    recommendations for publication or rejection, and writing
-                    marketing copy and cover blurbs. I also studied Creative
+                    non-fiction; digital media experience managing a worldwide
+                    network of more than 6,000 writers; and acquisitions
+                    experience in a publishing house. I also studied Creative
                     Writing at the Oxford University summer program and have
                     continued to take classes in literature, writing, and
                     editing for my personal development.
                   </p>
+
                   <p style={styles.cardText}>
-                    I am a tenacious go-getter whose determination, enthusiasm,
-                    and energy buoys authors’ spirits and helps bring the best
-                    stories to readers.
+                    My favorite reads include The Book of Strange New Things,
+                    The Subtle Art of Not Giving a Fuck, and The Elegance of the
+                    Hedgehog.
                   </p>
                 </Paper>
                 <Paper style={styles.card} elevation={24}>
