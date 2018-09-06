@@ -59,7 +59,7 @@ export default function Appbar() {
               </Button>
               <Button color="inherit">
                 <Link style={styles.appBarButton} to="/about">
-                  About
+                  Meet the Team
                 </Link>
               </Button>
             </Toolbar>
