@@ -1,20 +1,41 @@
 {
-  "name": "peachflame",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^1.5.1",
-    "@material-ui/icons": "^1.1.1",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-jss": "^8.6.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5"
-  },
+  "name": "PeachFlame",
+  "version": "0.0.1",
+  "description": "PeachFlame",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && yarn install",
+    "build": "cd client && npm run build",
+    "server": "nodemon server.js",
+    "yarn": "yarn && cd client && yarn"
+  },
+  "author": "Alec Down",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "concurrently": "^4.0.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.2.13",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.6.8",
+    "nodemon": "^1.18.4",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "path": "^0.12.7",
+    "validator": "^10.7.1"
   }
 }
