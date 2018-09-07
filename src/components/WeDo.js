@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Typography, Button, Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const styles = {
   container: {
@@ -24,6 +25,8 @@ const styles = {
   }
 };
 
+const QuoteLink = props => <Link to="/quote" {...props} />;
+
 class WeDo extends Component {
   render() {
     return (
@@ -39,6 +42,7 @@ class WeDo extends Component {
               variant="contained"
               color="primary"
               size="large"
+              component={QuoteLink}
             >
               Get Started
             </Button>

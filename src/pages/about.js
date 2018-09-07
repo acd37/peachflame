@@ -14,9 +14,9 @@ const styles = {
   },
   card: {
     padding: "40px",
-    height: 620,
-    maxWidth: 500,
-    margin: 40,
+    minHeight: 620,
+    maxWidth: 400,
+    margin: 20,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

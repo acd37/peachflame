@@ -9,6 +9,9 @@ import Landing from "./pages/landing";
 import About from "./pages/about";
 import Editing from "./pages/editing";
 import Development from "./pages/development";
+import Dashboard from "./pages/dashboard";
+import Login from "./pages/login";
+import Quote from "./pages/quote";
 import NotFound from "./pages/404";
 
 const theme = createMuiTheme({
@@ -37,6 +40,9 @@ class App extends Component {
                 <Route path="/about" component={About} />
                 <Route path="/editing" component={Editing} />
                 <Route path="/development" component={Development} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/login" component={Login} />
+                <Route path="/quote" component={Quote} />
                 <Route component={NotFound} />
               </Switch>
               <BottomNav />

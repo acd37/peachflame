@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Toolbar, Typography, Button, Grid, AppBar } from "@material-ui/core";
 import logo from "../images/peachflame.png";
 import { Link } from "react-router-dom";
@@ -27,45 +27,67 @@ const styles = {
     fontSize: "1em",
     textTransform: "capitalize",
     textDecoration: "none"
+  },
+  loginButton: {
+    position: "absolute",
+    right: 0
   }
 };
 
+const LoginLink = props => <Link to="/login" {...props} />;
+
 export default function Appbar() {
   return (
-    <Fragment>
-      <AppBar style={styles.appBar} position="absolute">
-        <Grid item xs={8}>
-          <Grid container justify="center">
-            <Toolbar>
-              <img style={styles.logo} src={logo} />
-              <Typography style={styles.logoText} variant="title">
-                PeachFlame
-              </Typography>
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/">
-                  Home
-                </Link>
-              </Button>
+    <AppBar style={styles.appBar} position="absolute">
+      <Grid container justify="center">
+        <Grid item xs={10}>
+          <Toolbar>
+            <img style={styles.logo} src={logo} />
+            <Typography style={styles.logoText} variant="title">
+              PeachFlame
+            </Typography>
 
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/editing">
-                  Editing
-                </Link>
-              </Button>
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/development">
-                  Web Design
-                </Link>
-              </Button>
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/about">
-                  Meet the Team
-                </Link>
-              </Button>
-            </Toolbar>
-          </Grid>
+            <Button color="inherit">
+              <Link style={styles.appBarButton} to="/">
+                Home
+              </Link>
+            </Button>
+
+            <Button color="inherit">
+              <Link style={styles.appBarButton} to="/editing">
+                Editing
+              </Link>
+            </Button>
+
+            <Button color="inherit">
+              <Link style={styles.appBarButton} to="/development">
+                Web Design
+              </Link>
+            </Button>
+
+            <Button color="inherit">
+              <Link style={styles.appBarButton} to="/quote">
+                Start a Quote
+              </Link>
+            </Button>
+
+            <Button color="inherit">
+              <Link style={styles.appBarButton} to="/about">
+                Meet the Team
+              </Link>
+            </Button>
+
+            <Button
+              style={styles.loginButton}
+              variant="contained"
+              color="primary"
+              component={LoginLink}
+            >
+              Login
+            </Button>
+          </Toolbar>
         </Grid>
-      </AppBar>
-    </Fragment>
+      </Grid>
+    </AppBar>
   );
 }

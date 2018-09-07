@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Banner from "../components/Banner";
 import { Typography, Button, Grid, Paper, Divider } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const styles = {
   container: {
@@ -42,6 +43,8 @@ const styles = {
   }
 };
 
+const QuoteLink = props => <Link to="/quote" {...props} />;
+
 class Editing extends Component {
   render() {
     return (
@@ -72,6 +75,7 @@ class Editing extends Component {
                   variant="contained"
                   color="primary"
                   size="large"
+                  component={QuoteLink}
                 >
                   Get more details
                 </Button>
@@ -99,6 +103,7 @@ class Editing extends Component {
                   variant="contained"
                   color="primary"
                   size="large"
+                  component={QuoteLink}
                 >
                   Get more details
                 </Button>
@@ -127,6 +132,7 @@ class Editing extends Component {
                   variant="contained"
                   color="primary"
                   size="large"
+                  component={QuoteLink}
                 >
                   Get more details
                 </Button>
@@ -157,6 +163,7 @@ class Editing extends Component {
                   variant="contained"
                   color="primary"
                   size="large"
+                  component={QuoteLink}
                 >
                   Get more details
                 </Button>
@@ -175,6 +182,7 @@ class Editing extends Component {
                   variant="contained"
                   color="primary"
                   size="large"
+                  component={QuoteLink}
                 >
                   Get more details
                 </Button>
