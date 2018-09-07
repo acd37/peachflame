@@ -54,7 +54,11 @@ class Login extends Component {
         <Grid container style={styles.root} justify="center">
           <Grid item xs={12}>
             <Grid container justify="space-around">
-              <form style={styles.container} autoComplete="off">
+              <form
+                style={styles.container}
+                autoComplete="off"
+                onSubmit={this.handleLoginUser}
+              >
                 <TextField
                   id="email"
                   label="Email"
@@ -80,7 +84,7 @@ class Login extends Component {
                   style={styles.loginButton}
                   variant="contained"
                   color="primary"
-                  onClick={this.handleLoginUser}
+                  type="submit"
                 >
                   Login
                 </Button>

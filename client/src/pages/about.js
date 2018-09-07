@@ -1,127 +1,133 @@
 import React, { Component, Fragment } from "react";
 import logo from "../images/peachflame.png";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia
+} from "@material-ui/core";
 import Banner from "../components/Banner";
 import alec from "../images/alec.jpg";
 import kelsey from "../images/kelsey.jpg";
+import max from "../images/max.jpg";
 
 const styles = {
   root: {
     flexGrow: 1
   },
-  container: {
-    marginBottom: 160
-  },
-  card: {
-    padding: "40px",
-    minHeight: 620,
-    maxWidth: 400,
-    margin: 20,
+  cardHolder: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start"
+    alignItems: "center"
   },
-  cardTitle: {
-    textAlign: "center"
+  details: {
+    display: "flex",
+    flexDirection: "column"
   },
-  cardImage: {
-    maxHeight: "40px",
-    marginTop: "20px"
+  content: {
+    flex: "1 0 auto",
+    maxWidth: 400
   },
-  cardText: {
-    fontSize: "1em",
-    color: "rgb(110, 120, 134)",
-    lineHeight: 1.6,
+  cover: {
+    width: 200,
+    height: 200
+  },
+  card: {
+    display: "flex",
+    marginTop: 30,
+    marginBottom: 30,
+    width: 600,
+    maxWidth: "90%"
+  },
+  headline: {
     textAlign: "left"
   },
-  snippetHeader: {
-    color: "rgb(37,56,88)",
-    fontSize: "1.5em",
-    fontWeight: 600
-  },
-  snippet: {
-    color: "rgb(37,56,88)",
-    fontSize: "1em",
-    marginBottom: 20
-  },
-  textBox: {
-    width: 400,
-    marginTop: 75
-  },
-  gridRow: {
-    marginBottom: 200
-  },
-  listContainer: {
-    textAlign: "left"
-  },
-  profileImage: {
-    borderRadius: "25%",
-    height: 150,
-    width: 150
+  subheading: {
+    marginBottom: 10
   }
 };
+
 class About extends Component {
   render() {
     return (
       <Fragment>
-        <Banner title="About" />
+        <Banner title="Meet the Team" />
 
-        <div style={styles.container}>
-          <Grid container style={styles.root} justify="center">
-            <Grid style={styles.gridRow} item xs={10}>
-              <Grid container justify="space-around">
-                <Paper style={styles.card} elevation={24}>
-                  <img style={styles.profileImage} src={kelsey} />
-                  <h2 style={styles.cardTitle}> Kelsey </h2>
-                  <p style={styles.cardText}>
-                    My Myers-Briggs personality type is INFJ, often called “The
-                    Advocate”—and I consider myself an advocate for authors. I’m
-                    a writer-editor turned digital marketer, now utilizing my
-                    unique cross-section of skills in the publishing world.
-                  </p>
-                  <p style={styles.cardText}>
-                    My background includes freelance work editing fiction and
-                    non-fiction; digital media experience managing a worldwide
-                    network of more than 6,000 writers; and acquisitions
-                    experience in a publishing house. I also studied Creative
-                    Writing at the Oxford University summer program and have
-                    continued to take classes in literature, writing, and
-                    editing for my personal development.
-                  </p>
-
-                  <p style={styles.cardText}>
-                    My favorite reads include The Book of Strange New Things,
-                    The Subtle Art of Not Giving a Fuck, and The Elegance of the
-                    Hedgehog.
-                  </p>
-                </Paper>
-                <Paper style={styles.card} elevation={24}>
-                  <img style={styles.profileImage} src={alec} />
-                  <h2 style={styles.cardTitle}> Alec </h2>
-
-                  <p style={styles.cardText}>
-                    I'm a software developer with a passion for building
-                    beautiful web apps. My typical go-to technologies articles
-                    MongoDB, Express, ReactJS and NodeJS, but I'm also
-                    comfortable working with MySQL, PHP, Python and more.
-                  </p>
-                  <p style={styles.cardText}>
-                    I've been developing sites on and off for several years, and
-                    recently made the jump to doing what I enjoy full-time.
-                  </p>
-
-                  <p style={styles.cardText}>
-                    My background includes an undergraduate degree in German and
-                    Portuguese literature, a graduate degree in education, and
-                    professional training in full-stack development. When I'm
-                    not working or studying, I enjoy spending my time coding up
-                    hobby apps, playing with my kid, or binge-watching TV :)
-                  </p>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Grid>
+        <div style={styles.cardHolder}>
+          <Card style={styles.card} elevation={24}>
+            <CardMedia
+              style={styles.cover}
+              image={kelsey}
+              title="Kelsey Down"
+            />
+            <div style={styles.details}>
+              <CardContent style={styles.content}>
+                <Typography style={styles.headline} variant="headline">
+                  Kelsey{" "}
+                </Typography>
+                <Typography
+                  style={styles.subheading}
+                  variant="subheading"
+                  color="textSecondary"
+                >
+                  Editor, Content Creator
+                </Typography>
+                <Typography component="p">
+                  It is Kelsey's passion and privilege to work as a full-service
+                  editor. She's worked across many different genres and
+                  specializes in content development, so that your story is YOUR
+                  story – polished.
+                </Typography>
+              </CardContent>
+            </div>
+          </Card>
+          <Card style={styles.card} elevation={24}>
+            <CardMedia style={styles.cover} image={alec} title="Alec Down" />
+            <div style={styles.details}>
+              <CardContent style={styles.content}>
+                <Typography style={styles.headline} variant="headline">
+                  Alec{" "}
+                </Typography>
+                <Typography
+                  style={styles.subheading}
+                  variant="subheading"
+                  color="textSecondary"
+                >
+                  Developer
+                </Typography>
+                <Typography component="p">
+                  Alec is a software developer with a passion for building
+                  beautiful web applications. His go-to technologies are
+                  MongoDB, Express, ReactJS and NodeJS, but he's also
+                  comfortable working with MySQL, PHP, Python and more.
+                </Typography>
+              </CardContent>
+            </div>
+          </Card>
+          <Card style={styles.card} elevation={24}>
+            <CardMedia style={styles.cover} image={max} title="Max Wheeler" />
+            <div style={styles.details}>
+              <CardContent style={styles.content}>
+                <Typography style={styles.headline} variant="headline">
+                  Max{" "}
+                </Typography>
+                <Typography
+                  style={styles.subheading}
+                  variant="subheading"
+                  color="textSecondary"
+                >
+                  Developer
+                </Typography>
+                <Typography component="p">
+                  Max is a full-stack JavaScript developer with a passion for
+                  Blockchain technology, specializing in NodeJS, VueJS, MongoDB,
+                  Express and enjoys keeping up with the latest technologies.
+                </Typography>
+              </CardContent>
+            </div>
+          </Card>
         </div>
       </Fragment>
     );
