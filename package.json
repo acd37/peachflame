@@ -8,20 +8,16 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "install": "cd client && npm install",
+    "install": "cd client && yarn install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "server": "nodemon server.js"
   },
   "author": "Alec Down",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
-  },
   "engines": {
-    "node": "8.11.3",
-    "npm": "5.6.0"
+    "node": "^8.9.4",
+    "npm": "^5.6.0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
