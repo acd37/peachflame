@@ -27,12 +27,42 @@ const styles = {
   },
   botTextBox: {
     backgroundColor: "#0072ff",
-    padding: 5,
-    margin: 5
+    padding: 7,
+    margin: 5,
+    borderRadius: 3
   }
 };
 
-const services = ["Editorial", "Development", "Content Creation"];
+const services = [
+  {
+    name: "a",
+    value: "Editorial"
+  },
+  {
+    name: "b",
+    value: "Development"
+  },
+  {
+    name: "c",
+    value: "Content Creation."
+  }
+];
+
+const developmentChoices = [
+  {
+    name: "a",
+    value: "A website built on Wordpress, Wix or other templating engine."
+  },
+  {
+    name: "b",
+    value: "A custom built website"
+  },
+  {
+    name: "c",
+    value:
+      "A custom built piece of software that integrates databases and server-side code."
+  }
+];
 
 class Quote extends Component {
   state = {
@@ -55,108 +85,7 @@ class Quote extends Component {
 
         <Grid container style={styles.root} justify="center">
           <Grid item xs={12}>
-            <Grid container justify="space-around">
-              <form style={styles.container} autoComplete="off">
-                <div style={styles.botTextBox}>
-                  <Typography style={styles.formText}>
-                    Let's get started on your quote!
-                  </Typography>
-                </div>
-                <div style={styles.botTextBox}>
-                  <Typography style={styles.formText}>
-                    What should we call you?
-                  </Typography>
-                </div>
-
-                <TextField
-                  id="name"
-                  label="Name"
-                  value={this.state.name}
-                  onChange={this.handleChange("name")}
-                  margin="normal"
-                  fullWidth
-                />
-
-                {this.state.name ? (
-                  <Fragment>
-                    <Typography style={styles.formText}>
-                      Hi, {this.state.name}! <br /> What kind of service are you
-                      interested in today?
-                    </Typography>
-                    <TextField
-                      id="select-service"
-                      select
-                      label="Select"
-                      value={this.state.service}
-                      onChange={this.handleChange("service")}
-                      margin="normal"
-                      fullWidth
-                    >
-                      {services.map(service => (
-                        <MenuItem key={service} value={service}>
-                          {service}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-
-                    {this.state.service === "Development" && (
-                      <Fragment>
-                        <Typography style={styles.formText}>
-                          {" "}
-                          Great, you're interested in {this.state.service}.{" "}
-                          <br />
-                          Let's get the details we need, just a few more
-                          questions!
-                        </Typography>
-                        <Typography style={styles.formTextHeader}>
-                          {this.state.service}
-                        </Typography>
-                      </Fragment>
-                    )}
-
-                    {this.state.service === "Editorial" && (
-                      <Fragment>
-                        <Typography style={styles.formText}>
-                          {" "}
-                          Great, you're interested in {this.state.service}.{" "}
-                          <br />
-                          Let's get the details we need, just a few more
-                          questions!
-                        </Typography>
-                        <Typography style={styles.formTextHeader}>
-                          {this.state.service}
-                        </Typography>
-                      </Fragment>
-                    )}
-
-                    {this.state.service === "Content Creation" && (
-                      <Fragment>
-                        <Typography style={styles.formText}>
-                          {" "}
-                          Great, you're interested in {this.state.service}.{" "}
-                          <br />
-                          Let's get the details we need, just a few more
-                          questions!
-                        </Typography>
-                        <Typography style={styles.formTextHeader}>
-                          {this.state.service}
-                        </Typography>
-                      </Fragment>
-                    )}
-                  </Fragment>
-                ) : null}
-
-                {this.state.formComplete && (
-                  <Button
-                    style={styles.loginButton}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Submit Quote
-                  </Button>
-                )}
-              </form>
-            </Grid>
+            <Grid container justify="space-around" />
           </Grid>
         </Grid>
       </Fragment>
