@@ -12,6 +12,7 @@ router.get("/test", (req, res) => res.json({ msg: "User route works" }));
 
 //CREATE POST api/users/register
 router.post("/register", (req, res) => {
+  console.log(req.body);
   User.findOne({
     email: req.body.email
   }).then(user => {
