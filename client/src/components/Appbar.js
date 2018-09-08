@@ -31,6 +31,14 @@ const styles = {
   loginButton: {
     position: "absolute",
     right: 0
+  },
+  logoutButton: {
+    position: "absolute",
+    right: 0
+  },
+  dashboardButton: {
+    position: "absolute",
+    right: 100
   }
 };
 
@@ -90,12 +98,20 @@ class Appbar extends Component {
               ) : (
                 <Fragment>
                   <Button
-                    style={styles.loginButton}
+                    style={styles.dashboardButton}
                     variant="contained"
                     color="primary"
                     component={LoginLink}
                   >
                     Back to Dashboard
+                  </Button>
+                  <Button
+                    style={styles.logoutButton}
+                    variant="contained"
+                    color="primary"
+                    onClick={this.props.logout}
+                  >
+                    Logout
                   </Button>
                 </Fragment>
               )}

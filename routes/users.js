@@ -10,6 +10,20 @@ const User = require("../models/User");
 //@route GET api/users/test
 router.get("/test", (req, res) => res.json({ msg: "User route works" }));
 
+//@route GET api/users/current/
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      first_name: req.user.first_name,
+      last_name: req.user.last_name,
+      isAdmin: req.user.isAdmin
+    });
+  }
+);
+
 //CREATE POST api/users/register
 router.post("/register", (req, res) => {
   console.log(req.body);

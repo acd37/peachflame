@@ -40,8 +40,9 @@ class Login extends Component {
           email: "",
           password: ""
         });
+        console.log(res.data);
         this.props.updateAuth(res);
-        this.props.history.push("/dashboard");
+        localStorage.setItem("peachflame", res.data.user.token);
       })
       .catch(err => console.log(err));
   };
