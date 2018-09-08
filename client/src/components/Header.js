@@ -3,7 +3,7 @@ import logo from "../images/peachflame.png";
 
 const styles = {
   appHeader: {
-    background: "#000046",
+    background: "#00c6ff",
     background: "-webkit-linear-gradient(right, #00c6ff, #0072ff)",
     background: "-o-linear-gradient(right, #00c6ff, #0072ff)",
     background: "linear-gradient(to left, #00c6ff, #0072ff)",

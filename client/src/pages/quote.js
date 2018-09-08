@@ -17,12 +17,18 @@ const styles = {
     maxWidth: "90%"
   },
   formText: {
-    fontSize: "1em"
+    fontSize: "1em",
+    color: "#fff"
   },
   formTextHeader: {
     fontSize: "2em",
     marginTop: 20,
     marginBottom: 20
+  },
+  botTextBox: {
+    backgroundColor: "#0072ff",
+    padding: 5,
+    margin: 5
   }
 };
 
@@ -51,6 +57,17 @@ class Quote extends Component {
           <Grid item xs={12}>
             <Grid container justify="space-around">
               <form style={styles.container} autoComplete="off">
+                <div style={styles.botTextBox}>
+                  <Typography style={styles.formText}>
+                    Let's get started on your quote!
+                  </Typography>
+                </div>
+                <div style={styles.botTextBox}>
+                  <Typography style={styles.formText}>
+                    What should we call you?
+                  </Typography>
+                </div>
+
                 <TextField
                   id="name"
                   label="Name"
@@ -63,9 +80,8 @@ class Quote extends Component {
                 {this.state.name ? (
                   <Fragment>
                     <Typography style={styles.formText}>
-                      Hi, {this.state.name}! <br /> We are looking forward to
-                      getting started with you. <br /> What kind of service are
-                      you interested in today?
+                      Hi, {this.state.name}! <br /> What kind of service are you
+                      interested in today?
                     </Typography>
                     <TextField
                       id="select-service"
