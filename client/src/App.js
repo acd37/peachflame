@@ -8,6 +8,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+
 import Spinner from "./components/Spinner";
 import Appbar from "./components/Appbar";
 import BottomNav from "./components/BottomNav";
