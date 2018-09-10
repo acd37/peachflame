@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Toolbar, Typography, Button, Grid, AppBar } from "@material-ui/core";
 import logo from "../images/peachflame.png";
 import { Link } from "react-router-dom";
+import { SharedSnackbarConsumer } from "../SharedSnackbar.context";
 
 const styles = {
   flex: {
@@ -47,78 +48,87 @@ const LoginLink = props => <Link to="/login" {...props} />;
 class Appbar extends Component {
   render() {
     return (
-      <AppBar style={styles.appBar} position="absolute">
-        <Grid container justify="center">
-          <Grid item xs={10}>
-            <Toolbar>
-              <img style={styles.logo} src={logo} />
-              <Typography style={styles.logoText} variant="title">
-                PeachFlame
-              </Typography>
+      <SharedSnackbarConsumer>
+        {value => {
+          const { dispatch } = value.state;
 
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/">
-                  Home
-                </Link>
-              </Button>
+          return (
+            <AppBar style={styles.appBar} position="absolute">
+              <Grid container justify="center">
+                <Grid item xs={10}>
+                  <Toolbar>
+                    <img style={styles.logo} src={logo} />
 
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/editing">
-                  Editing
-                </Link>
-              </Button>
+                    <Typography style={styles.logoText} variant="title">
+                      PeachFlame
+                    </Typography>
 
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/development">
-                  Web Design
-                </Link>
-              </Button>
+                    <Button color="inherit">
+                      <Link style={styles.appBarButton} to="/">
+                        Home
+                      </Link>
+                    </Button>
 
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/quote">
-                  Start a Quote
-                </Link>
-              </Button>
+                    <Button color="inherit">
+                      <Link style={styles.appBarButton} to="/editing">
+                        Editing
+                      </Link>
+                    </Button>
 
-              <Button color="inherit">
-                <Link style={styles.appBarButton} to="/about">
-                  Meet the Team
-                </Link>
-              </Button>
+                    <Button color="inherit">
+                      <Link style={styles.appBarButton} to="/development">
+                        Web Design
+                      </Link>
+                    </Button>
 
-              {!this.props.authedUser.isLoggedIn ? (
-                <Button
-                  style={styles.loginButton}
-                  variant="contained"
-                  color="primary"
-                  component={LoginLink}
-                >
-                  Login
-                </Button>
-              ) : (
-                <Fragment>
-                  <Button
-                    style={styles.dashboardButton}
-                    variant="contained"
-                    color="primary"
-                    component={LoginLink}
-                  >
-                    Back to Dashboard
-                  </Button>
-                  <Button
-                    style={styles.logoutButton}
-                    variant="contained"
-                    color="primary"
-                    onClick={this.props.logout}
-                  >
-                    Logout
-                  </Button>
-                </Fragment>
-              )}
-            </Toolbar>
-          </Grid>
-        </Grid>
-      </AppBar>
+                    <Button color="inherit">
+                      <Link style={styles.appBarButton} to="/quote">
+                        Start a Quote
+                      </Link>
+                    </Button>
+
+                    <Button color="inherit">
+                      <Link style={styles.appBarButton} to="/about">
+                        Meet the Team
+                      </Link>
+                    </Button>
+
+                    {!this.props.authedUser.isLoggedIn ? (
+                      <Button
+                        style={styles.loginButton}
+                        variant="contained"
+                        color="primary"
+                        component={LoginLink}
+                      >
+                        Login
+                      </Button>
+                    ) : (
+                      <Fragment>
+                        <Button
+                          style={styles.dashboardButton}
+                          variant="contained"
+                          color="primary"
+                          component={LoginLink}
+                        >
+                          Back to Dashboard
+                        </Button>
+                        <Button
+                          style={styles.logoutButton}
+                          variant="contained"
+                          color="primary"
+                          onClick={this.props.logout.bind(this, dispatch)}
+                        >
+                          Logout
+                        </Button>
+                      </Fragment>
+                    )}
+                  </Toolbar>
+                </Grid>
+              </Grid>
+            </AppBar>
+          );
+        }}
+      </SharedSnackbarConsumer>
     );
   }
 }

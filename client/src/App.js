@@ -8,7 +8,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-
+import { SharedSnackbarProvider } from "./SharedSnackbar.context";
 import Spinner from "./components/Spinner";
 import Appbar from "./components/Appbar";
 import BottomNav from "./components/BottomNav";
@@ -20,7 +20,6 @@ import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Quote from "./pages/quote";
 import NotFound from "./pages/404";
-import Axios from "axios";
 
 const theme = createMuiTheme({
   palette: {
@@ -70,11 +69,14 @@ class App extends Component {
     });
   };
 
-  logout = () => {
+  logout = dispatch => {
     this.setState({
       authedUser: {}
     });
     localStorage.removeItem("peachflame");
+    if (!localStorage.getItem("peachflame")) {
+      dispatch({ type: "DISPLAY_ALERT", payload: "Logged out successfully." });
+    }
   };
 
   render() {
@@ -87,40 +89,47 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <Router>
-            <Fragment>
-              <Appbar logout={this.logout} authedUser={this.state.authedUser} />
-              <Switch>
-                <Route exact path="/" component={Landing} />
-                <Route path="/about" component={About} />
-                <Route path="/editing" component={Editing} />
-                <Route path="/development" component={Development} />
-                <Route
-                  path="/dashboard"
-                  render={() =>
-                    !this.state.authedUser.isLoggedIn ? (
-                      <Redirect to="/login" updateAuth={this.updateAuth} />
-                    ) : (
-                      <Dashboard authedUser={this.state.authedUser} />
-                    )
-                  }
+          <SharedSnackbarProvider>
+            <Router>
+              <Fragment>
+                <Appbar
+                  logout={this.logout}
+                  authedUser={this.state.authedUser}
                 />
-                <Route
-                  path="/login"
-                  render={() =>
-                    this.state.authedUser.isLoggedIn ? (
-                      <Redirect to="/dashboard" />
-                    ) : (
-                      <Login updateAuth={this.updateAuth} />
-                    )
-                  }
-                />
-                <Route path="/quote" component={Quote} />
-                <Route component={NotFound} />
-              </Switch>
-              <BottomNav />
-            </Fragment>
-          </Router>
+
+                <Switch>
+                  <Route exact path="/" component={Landing} />
+                  <Route path="/about" component={About} />
+                  <Route path="/editing" component={Editing} />
+                  <Route path="/development" component={Development} />
+                  <Route
+                    path="/dashboard"
+                    render={() =>
+                      !this.state.authedUser.isLoggedIn ? (
+                        <Redirect to="/login" updateAuth={this.updateAuth} />
+                      ) : (
+                        <Dashboard authedUser={this.state.authedUser} />
+                      )
+                    }
+                  />
+                  <Route
+                    path="/login"
+                    render={() =>
+                      this.state.authedUser.isLoggedIn ? (
+                        <Redirect to="/dashboard" />
+                      ) : (
+                        <Login updateAuth={this.updateAuth} />
+                      )
+                    }
+                  />
+                  <Route path="/quote" component={Quote} />
+                  <Route component={NotFound} />
+                </Switch>
+
+                <BottomNav />
+              </Fragment>
+            </Router>
+          </SharedSnackbarProvider>
         </div>
       </MuiThemeProvider>
     );
