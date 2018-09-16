@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from "react";
 import logo from "../images/peachflame.png";
-import Grid from "@material-ui/core/Grid";
 import twitter from "../images/twitter-logo-silhouette.png";
 import fb from "../images/facebook.png";
 import linked from "../images/linkedin.png";

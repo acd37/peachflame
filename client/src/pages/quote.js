@@ -36,25 +36,8 @@ const styles = {
   }
 };
 
-const developmentChoices = [
-  {
-    name: "a",
-    value: "A website built on Wordpress, Wix or other templating engine."
-  },
-  {
-    name: "b",
-    value: "A custom built website"
-  },
-  {
-    name: "c",
-    value:
-      "A custom built piece of software that integrates databases and server-side code."
-  }
-];
-
 class Quote extends Component {
   state = {
-    service: "",
     first_name: "",
     last_name: "",
     email: "",

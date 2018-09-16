@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const chalk = require("chalk");
 const users = require("./routes/users");
+const projects = require("./routes/projects");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -37,6 +38,7 @@ mongoose
 
 // api routes
 app.use("/api/users", users);
+app.use("/api/projects", projects);
 
 //starting app
 app.get("*", (req, res) => {

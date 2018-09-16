@@ -25,11 +25,6 @@ const styles = {
     marginBottom: 30
   },
   textSubHeader: {
-    fontSize: "2em",
-    fontWeight: "300",
-    color: "rgb(37,56,88)"
-  },
-  textSubHeader: {
     fontSize: "1.8em",
     fontWeight: "300",
     color: "rgb(37,56,88)"

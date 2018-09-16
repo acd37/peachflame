@@ -89,7 +89,7 @@ class Tools extends Component {
 
         <div style={styles.imageContainer}>
           <div style={styles.imageBox}>
-            <img style={styles.image} src={chat} />
+            <img style={styles.image} src={chat} alt="chat" />
             <Typography style={styles.snippetHeader}>
               Collaboration Tools
             </Typography>
@@ -99,7 +99,7 @@ class Tools extends Component {
             <Typography style={styles.link}>Learn more </Typography>
           </div>
           <div style={styles.imageBox}>
-            <img style={styles.image} src={time} />
+            <img style={styles.image} src={time} alt="time" />
             <Typography style={styles.snippetHeader}>
               Efficient Management
             </Typography>
@@ -110,7 +110,7 @@ class Tools extends Component {
             <Typography style={styles.link}>Learn more </Typography>
           </div>
           <div style={styles.imageBox}>
-            <img style={styles.image} src={contracts} />
+            <img style={styles.image} src={contracts} alt="contracts" />
             <Typography style={styles.snippetHeader}>
               Clear Expectations
             </Typography>
@@ -121,7 +121,7 @@ class Tools extends Component {
             <Typography style={styles.link}>Learn more </Typography>
           </div>
           <div style={styles.imageBox}>
-            <img style={styles.image} src={payments} />
+            <img style={styles.image} src={payments} alt="payments" />
             <Typography style={styles.snippetHeader}>
               Digital Security
             </Typography>

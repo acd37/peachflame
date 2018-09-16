@@ -3,9 +3,6 @@ import logo from "../images/peachflame.png";
 
 const styles = {
   appHeader: {
-    background: "#00c6ff",
-    background: "-webkit-linear-gradient(right, #00c6ff, #0072ff)",
-    background: "-o-linear-gradient(right, #00c6ff, #0072ff)",
     background: "linear-gradient(to left, #00c6ff, #0072ff)",
     height: 500,
     color: "#fff",
@@ -22,7 +19,8 @@ const styles = {
     fontWeight: "600",
     marginBottom: 0,
     fontSize: "7em",
-    letterSpacing: 1.2
+    letterSpacing: 1.2,
+    maxWidth: "100%"
   },
   subHeader: {
     fontWeight: "400",
@@ -41,10 +39,10 @@ class Header extends Component {
     return (
       <Fragment>
         <div style={styles.appHeader}>
-          <h1 style={styles.header}>
+          <h1 id="page_header" style={styles.header}>
             {" "}
             PeachFl
-            <img style={styles.cardImage} src={logo} />
+            <img style={styles.cardImage} src={logo} alt="logo" id="logo" />
             me{" "}
           </h1>
           <h2 style={styles.subHeader}> Publishing Services </h2>

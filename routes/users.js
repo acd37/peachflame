@@ -17,12 +17,25 @@ router.get(
   (req, res) => {
     res.json({
       id: req.user.id,
+      email: req.user.email,
       first_name: req.user.first_name,
       last_name: req.user.last_name,
       isAdmin: req.user.isAdmin
     });
   }
 );
+
+//@route GET api/users/get/
+router.get("/get", (req, res) => {
+  User.find({}).then(clients => {
+    if (!clients) {
+      return res.status(400).json({ msg: "There are no clients!" });
+    } else {
+      res.json(clients);
+      console.log(clients);
+    }
+  });
+});
 
 //CREATE POST api/users/register
 router.post("/register", (req, res) => {
@@ -33,30 +46,55 @@ router.post("/register", (req, res) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists." });
     } else {
-      const newUser = new User({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        password: req.body.password
-      });
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user =>
-              res.json({
-                success: "User has been successfully registered.",
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email,
-                id: user._id
-              })
-            )
-            .catch(err => console.log(err));
+      if (req.body.password) {
+        const newUser = new User({
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email,
+          client_type: req.body.client_type,
+          password: req.body.password
         });
-      });
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then(user =>
+                res.json({
+                  success: "User has been successfully registered.",
+                  first_name: user.first_name,
+                  last_name: user.last_name,
+                  email: user.email,
+                  id: user._id,
+                  activeProjects: user.activeProjects
+                })
+              )
+              .catch(err => console.log(err));
+          });
+        });
+      } else {
+        const newUser = new User({
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          email: req.body.email,
+          client_type: req.body.client_type
+        });
+        newUser
+          .save()
+          .then(user =>
+            res.json({
+              success: "User has been successfully registered.",
+              first_name: user.first_name,
+              last_name: user.last_name,
+              email: user.email,
+              _id: user._id,
+              client_type: user.client_type,
+              activeProjects: user.activeProjects
+            })
+          )
+          .catch(err => console.log(err));
+      }
     }
   });
 });
@@ -78,22 +116,35 @@ router.get("/:id", (req, res) => {
 
 //UPDATE PUT api/users/:id
 router.put("/:id", (req, res) => {
-  User.updateOne(
+  User.findOneAndUpdate(
     { _id: req.params.id },
     {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      isAdmin: req.body.isAdmin
-    }
+      $set: {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        isAdmin: req.body.isAdmin,
+        client_type: req.body.client_type
+      }
+    },
+    { new: true }
   )
-    .then(response => {
-      res.json({ success: "User has been successfully updated." });
+    .then(user => {
+      res.json({
+        isAdmin: user.isAdmin,
+        _id: user._id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        client_type: user.client_type,
+        activeProjects: user.activeProjects,
+        success: "Client has been successfully updated."
+      });
     })
     .catch(err => console.log(err));
 });
 
-//DELETE POST api/users/:id
+//DELETE DELETE api/users/:id
 router.delete("/:id", (req, res) => {
   User.findOneAndDelete({ _id: req.params.id }).then(response => {
     res.json({

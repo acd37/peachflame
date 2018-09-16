@@ -1,13 +1,5 @@
 import React, { Component, Fragment } from "react";
-import logo from "../images/peachflame.png";
-import {
-  Grid,
-  Paper,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia
-} from "@material-ui/core";
+import { Typography, Card, CardContent, CardMedia } from "@material-ui/core";
 import Banner from "../components/Banner";
 import alec from "../images/alec.jpg";
 import kelsey from "../images/kelsey.jpg";

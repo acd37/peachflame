@@ -1,50 +1,27 @@
-import React, { Component, Fragment } from "react";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { SharedSnackbarProvider } from "./SharedSnackbar.context";
-import Spinner from "./components/Spinner";
+import { ClientsProvider } from "./Clients.context";
 import Appbar from "./components/Appbar";
 import BottomNav from "./components/BottomNav";
 import Landing from "./pages/landing";
 import About from "./pages/about";
 import Editing from "./pages/editing";
 import Development from "./pages/development";
-import Dashboard from "./pages/dashboard";
+import Admin from "./pages/admin";
 import Login from "./pages/login";
 import Quote from "./pages/quote";
 import NotFound from "./pages/404";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "rgb(0,114,255)",
-      contrastText: "rgb(244, 245, 247)"
-    },
-    secondary: {
-      main: "rgb(244, 245, 247)",
-      contrastText: "rgb(37,56,88)"
-    }
-  }
-});
-
 class App extends Component {
   state = {
-    authedUser: {},
-    loading: true
+    authedUser: {}
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState({ loading: false }), 1200);
-
     let localToken = localStorage.getItem("peachflame");
-    console.log(localToken);
 
     if (localToken) {
       axios({
@@ -55,9 +32,16 @@ class App extends Component {
         }
       })
         .then(res => {
-          this.updateAuth(res);
+          console.log(res.data);
+          const user = res.data;
+          const authedUser = { ...user, isLoggedIn: true };
+          this.setState({
+            authedUser
+          });
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 
@@ -74,66 +58,78 @@ class App extends Component {
       authedUser: {}
     });
     localStorage.removeItem("peachflame");
+    this.props.history.push("/login");
     if (!localStorage.getItem("peachflame")) {
       dispatch({ type: "DISPLAY_ALERT", payload: "Logged out successfully." });
     }
   };
 
   render() {
-    const { loading } = this.state;
-
-    if (loading) {
-      return <Spinner />;
-    }
-
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <SharedSnackbarProvider>
-            <Router>
-              <Fragment>
-                <Appbar
-                  logout={this.logout}
-                  authedUser={this.state.authedUser}
+      <div className="App">
+        <SharedSnackbarProvider>
+          <ClientsProvider>
+            <Appbar logout={this.logout} authedUser={this.state.authedUser} />
+
+            <Switch>
+              {/* <Route component={NotFound} /> */}
+              <Route exact path="/" component={Landing} />
+              <Route path="/about" component={About} />
+              <Route path="/editing" component={Editing} />
+              <Route path="/development" component={Development} />
+              <Route path="/quote" component={Quote} />
+
+              {this.state.authedUser.isLoggedIn && (
+                <Route
+                  exact
+                  path="/login"
+                  render={() => (
+                    <Redirect
+                      to="/admin"
+                      updateAuth={this.updateAuth}
+                      authedUser={this.state.authedUser}
+                    />
+                  )}
                 />
+              )}
 
-                <Switch>
-                  <Route exact path="/" component={Landing} />
-                  <Route path="/about" component={About} />
-                  <Route path="/editing" component={Editing} />
-                  <Route path="/development" component={Development} />
-                  <Route
-                    path="/dashboard"
-                    render={() =>
-                      !this.state.authedUser.isLoggedIn ? (
-                        <Redirect to="/login" updateAuth={this.updateAuth} />
-                      ) : (
-                        <Dashboard authedUser={this.state.authedUser} />
-                      )
-                    }
-                  />
-                  <Route
-                    path="/login"
-                    render={() =>
-                      this.state.authedUser.isLoggedIn ? (
-                        <Redirect to="/dashboard" />
-                      ) : (
-                        <Login updateAuth={this.updateAuth} />
-                      )
-                    }
-                  />
-                  <Route path="/quote" component={Quote} />
-                  <Route component={NotFound} />
-                </Switch>
+              {!this.state.authedUser.isLoggedIn && (
+                <Route
+                  exact
+                  path="/login"
+                  render={() => <Login updateAuth={this.updateAuth} />}
+                />
+              )}
 
-                <BottomNav />
-              </Fragment>
-            </Router>
-          </SharedSnackbarProvider>
-        </div>
-      </MuiThemeProvider>
+              {this.state.authedUser.isLoggedIn && (
+                <Route
+                  exact
+                  path="/admin"
+                  render={() => (
+                    <Admin
+                      updateAuth={this.updateAuth}
+                      authedUser={this.state.authedUser}
+                    />
+                  )}
+                />
+              )}
+
+              {!this.state.authedUser.isLoggedIn && (
+                <Route
+                  exact
+                  path="/admin"
+                  render={() => (
+                    <Redirect to="/login" updateAuth={this.updateAuth} />
+                  )}
+                />
+              )}
+            </Switch>
+            <BottomNav />
+          </ClientsProvider>
+        </SharedSnackbarProvider>
+      </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

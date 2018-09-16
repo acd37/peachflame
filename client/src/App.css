@@ -10,7 +10,33 @@ h1 {
 
 h2 {
   text-align: center;
-  border-style: ;
+}
+
+#optimized_appbar {
+  position: absolute;
+  right: 5px;
+}
+
+@media screen and (min-width: 1050px) {
+  #optimized_appbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #page_header {
+    font-size: 3em !important;
+  }
+
+  #logo {
+    height: 40px !important;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  #appbar {
+    display: none;
+  }
 }
 
 /* Spinner */

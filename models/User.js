@@ -15,12 +15,33 @@ const UserSchema = new Schema({
     required: true
   },
   password: {
-    type: String,
-    required: true
+    type: String
   },
   isAdmin: {
     type: Boolean,
     default: false
+  },
+  activeProjects: {
+    type: Array,
+    default: []
+  },
+  client_type: {
+    type: String
+  },
+  project: {
+    title: String,
+    project_type: String,
+    page_count: String,
+    word_count: String,
+    genre: String,
+    due_date: Date,
+    project_type: String,
+    quoted_amount: String,
+    quote_received: Date,
+    date_agreed: Date,
+    status: String,
+    completion_date: String,
+    project_manager: String
   }
 });
 
