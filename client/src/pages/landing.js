@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Products from "../components/Products";
 import WeDo from "../components/WeDo";
 import Tools from "../components/Tools";
+import CompanyBand from "../components/CompanyBand";
 
 class Landing extends Component {
   render() {
@@ -11,6 +12,7 @@ class Landing extends Component {
         <Header />
         <WeDo />
         <Products />
+        <CompanyBand />
         <Tools />
       </Fragment>
     );

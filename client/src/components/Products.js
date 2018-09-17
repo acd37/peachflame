@@ -8,7 +8,7 @@ const styles = {
     flexGrow: 1
   },
   container: {
-    marginBottom: 160
+    marginBottom: 40
   },
   card: {
     padding: "40px",
@@ -49,7 +49,7 @@ const styles = {
     marginTop: 75
   },
   gridRow: {
-    marginBottom: 200
+    marginBottom: 40
   },
   listContainer: {
     textAlign: "left"

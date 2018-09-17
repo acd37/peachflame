@@ -3,6 +3,7 @@ import logo from "../images/peachflame.png";
 import twitter from "../images/twitter-logo-silhouette.png";
 import fb from "../images/facebook.png";
 import linked from "../images/linkedin.png";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 const styles = {
   grid: {
@@ -71,19 +72,10 @@ class BottomNav extends Component {
         <div style={styles.grid}>
           <div style={styles.logoContainer}>
             <img style={styles.img} src={logo} alt="iod logo" />
-            <p style={styles.text}>&copy; PeachFlame, 2018-2019</p>
 
-            <p>
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                style={styles.link}
-                className="link"
-                href=""
-              >
-                Privacy Policy
-              </a>
-            </p>
+            <p style={styles.text}>&copy; PeachFlame, 2018-2019</p>
+            <p style={styles.text}>help@peachflame.co</p>
+
             <div>
               <ul style={styles.socialMediaContainer}>
                 <li>
@@ -91,7 +83,7 @@ class BottomNav extends Component {
                     rel="noopener noreferrer"
                     target="_blank"
                     style={styles.link}
-                    href="https://www.facebook.com/InsideOutDev/"
+                    href=""
                   >
                     <img
                       src={fb}
@@ -100,26 +92,17 @@ class BottomNav extends Component {
                     />
                   </a>
                 </li>
-                <li>
-                  <a
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    style={styles.link}
-                    href="https://twitter.com/insideoutdev"
-                  >
-                    <img
-                      src={twitter}
-                      style={styles.social_media}
-                      alt="social media icon"
-                    />
+                {/* <li>
+                  <a rel="noopener noreferrer" target="_blank" style={styles.link} href="https://twitter.com/insideoutdev">
+                    <img src={twitter} style={styles.social_media} alt="social media icon" />
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
                     style={styles.link}
-                    href="https://www.linkedin.com/company/insideout-development/"
+                    href="https://www.linkedin.com/company/peachflameco/"
                   >
                     <img
                       src={linked}
@@ -130,6 +113,7 @@ class BottomNav extends Component {
                 </li>
               </ul>
             </div>
+            <PrivacyPolicy />
           </div>
         </div>
       </Fragment>

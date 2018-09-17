@@ -12,7 +12,8 @@ const styles = {
     justifyContent: "center",
     flexDirection: "column",
     background: "rgb(244, 245, 247)",
-    paddingBottom: 80
+    paddingBottom: 80,
+    textAlign: "center"
   },
   text: {
     fontSize: "2em",
