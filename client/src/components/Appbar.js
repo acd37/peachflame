@@ -11,6 +11,7 @@ import logo from "../images/peachflame.png";
 import { Link } from "react-router-dom";
 import { SharedSnackbarConsumer } from "../SharedSnackbar.context";
 import MenuIcon from "@material-ui/icons/Menu";
+import AppbarTray from "./AppbarTray";
 
 const styles = {
   flex: {
@@ -72,7 +73,6 @@ class Appbar extends Component {
                     <Typography style={styles.logoText} variant="title">
                       PeachFlame
                     </Typography>
-
                     <div id="appbar">
                       <Button color="inherit">
                         <Link style={styles.appBarButton} to="/">
@@ -134,11 +134,10 @@ class Appbar extends Component {
                         </Fragment>
                       )}
                     </div>
-                    <div id="optimized_appbar">
-                      <IconButton color="primary" aria-label="Menu">
-                        <MenuIcon />
-                      </IconButton>
-                    </div>
+                    <AppbarTray
+                      logout={this.props.logout}
+                      authedUser={this.props.authedUser}
+                    />
                   </Toolbar>
                 </Grid>
               </Grid>

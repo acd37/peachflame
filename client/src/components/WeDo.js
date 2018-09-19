@@ -9,9 +9,9 @@ const styles = {
     justifyContent: "center",
     textAlign: "center",
     flexDirection: "column",
-    padding: 50,
-    marginRight: 30,
-    marginLeft: 30,
+    width: 1200,
+    maxWidth: "90%",
+    margin: "0 auto",
     marginBottom: 50
   },
   text: {
@@ -31,23 +31,20 @@ class WeDo extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <Grid item xs={8}>
-          <Grid container justify="center">
-            <Typography style={styles.text}>
-              PeachFlame is a creative studio that offers book editing, web
-              design, and marketing services.
-            </Typography>
-            <Button
-              style={styles.button}
-              variant="contained"
-              color="primary"
-              size="large"
-              component={QuoteLink}
-            >
-              Get Started
-            </Button>
-          </Grid>
-        </Grid>
+        <Typography style={styles.text}>
+          PeachFlame is a creative studio offering manuscript editorial
+          services, web development and design, custom software design and
+          content creation.
+        </Typography>
+        <Button
+          style={styles.button}
+          variant="contained"
+          color="primary"
+          size="large"
+          component={QuoteLink}
+        >
+          Get Started
+        </Button>
       </div>
     );
   }

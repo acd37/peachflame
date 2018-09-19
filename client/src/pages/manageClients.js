@@ -20,10 +20,14 @@ import {
 const styles = {
   tableContainer: {
     margin: "20px auto",
-    maxWidth: "80%"
+    maxWidth: "100%",
+    overflowX: "auto"
   },
   textField: {
     width: "90%"
+  },
+  buttonRow: {
+    marginLeft: 20
   }
 };
 
@@ -95,14 +99,17 @@ class ManageClients extends Component {
           return (
             <Fragment>
               <div style={styles.tableContainer}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleAddClientDialogOpen}
-                >
-                  Add Client
-                </Button>
-                <Table>
+                <div style={styles.buttonRow}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.handleAddClientDialogOpen}
+                  >
+                    Add Client
+                  </Button>
+                </div>
+
+                <Table style={styles.table}>
                   <TableHead>
                     <TableRow>
                       <TableCell>First Name</TableCell>

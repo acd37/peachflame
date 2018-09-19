@@ -27,7 +27,15 @@ const styles = {
   textSubHeader: {
     fontSize: "1.8em",
     fontWeight: "300",
-    color: "rgb(37,56,88)"
+    color: "rgb(37,56,88)",
+    display: "inline-flex"
+  },
+  pricing: {
+    fontSize: "0.9em",
+    fontWeight: "300",
+    color: "rgb(37,56,88)",
+    marginLeft: 10,
+    display: "inline-flex"
   },
   button: {
     marginTop: 20,
@@ -51,7 +59,10 @@ class Editing extends Component {
               <Typography style={styles.textHeader}>Services</Typography>
               <Paper style={styles.productOffering} elevation={8}>
                 <Typography style={styles.textSubHeader}>
-                  Reader Report
+                  Reader Report,
+                </Typography>
+                <Typography style={styles.pricing}>
+                  $0.010 - $0.100 per word. $200 minimum.
                 </Typography>
                 <Divider style={styles.divider} />
                 <Typography style={styles.text}>
@@ -79,6 +90,9 @@ class Editing extends Component {
                 <Typography style={styles.textSubHeader}>
                   Developmental Edit
                 </Typography>
+                <Typography style={styles.pricing}>
+                  $0.018 - $0.180 per word. $200 minimum.
+                </Typography>
                 <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A detailed edit of your entire manuscript, focusing on
@@ -105,6 +119,9 @@ class Editing extends Component {
               </Paper>
               <Paper style={styles.productOffering} elevation={8}>
                 <Typography style={styles.textSubHeader}>Line Edit</Typography>
+                <Typography style={styles.pricing}>
+                  $0.016 - $0.160 per word. $200 minimum.
+                </Typography>
                 <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A line-by-line style edit of your entire manuscript or a
@@ -136,6 +153,9 @@ class Editing extends Component {
                 <Typography style={styles.textSubHeader}>
                   Copy Edit & Proofread
                 </Typography>
+                <Typography style={styles.pricing}>
+                  $0.012 - $0.120 per word. $200 minimum.
+                </Typography>
                 <Divider style={styles.divider} />
                 <Typography style={styles.text}>
                   A line-by-line grammatical edit of your entire manuscript or a
@@ -152,25 +172,6 @@ class Editing extends Component {
                       An optional reread after implementing our suggested edits
                     </li>
                   </ul>
-                </Typography>
-                <Button
-                  style={styles.button}
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  component={QuoteLink}
-                >
-                  Get more details
-                </Button>
-              </Paper>
-              <Paper style={styles.productOffering} elevation={8}>
-                <Typography style={styles.textSubHeader}>
-                  Book Marketing Plan
-                </Typography>
-                <Divider style={styles.divider} />
-                <Typography style={styles.text}>
-                  A step-by-step plan that recommends marketing tactics, along
-                  with a proposed timeline, tailored to your book.
                 </Typography>
                 <Button
                   style={styles.button}

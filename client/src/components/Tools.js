@@ -30,8 +30,8 @@ const styles = {
   },
   imageBox: {
     width: 325,
-    marginRight: 40,
-    marginLeft: 40
+    marginRight: 20,
+    marginLeft: 20
   },
   image: {
     height: 60,

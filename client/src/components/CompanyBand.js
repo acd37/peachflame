@@ -3,6 +3,7 @@ import iod from "../images/companies/iod.png";
 import utah from "../images/companies/utah.png";
 import marketapts from "../images/companies/marketapts.png";
 import cedarfort from "../images/companies/cedarfort.png";
+import connect from "../images/companies/connect.png";
 import { Typography } from "@material-ui/core";
 
 const styles = {
@@ -11,7 +12,8 @@ const styles = {
   },
   logoContainer: {
     display: "flex",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    flexWrap: "wrap"
   },
   header: {
     marginBottom: 30,
@@ -21,7 +23,9 @@ const styles = {
     textAlign: "center"
   },
   logo: {
-    height: 80
+    height: 40,
+    margin: 10,
+    marginTop: 30
   }
 };
 
@@ -54,6 +58,12 @@ class CompanyBand extends Component {
             style={styles.logo}
             src={cedarfort}
             alt="cedarfort logo"
+          />
+          <img
+            className="image_logo"
+            style={styles.logo}
+            src={connect}
+            alt="connect logo"
           />
         </div>
       </div>
