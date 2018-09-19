@@ -20,17 +20,17 @@ const styles = {
   },
   content: {
     flex: "1 0 auto",
-    maxWidth: 400
+    maxWidth: 500
   },
   cover: {
-    width: 200,
-    height: 200
+    width: 210,
+    height: 210
   },
   card: {
     display: "flex",
     marginTop: 30,
     marginBottom: 30,
-    width: 600,
+    width: 700,
     maxWidth: "90%"
   },
   headline: {
@@ -67,10 +67,11 @@ class About extends Component {
                   Editor, Content Creator
                 </Typography>
                 <Typography component="p">
-                  It is Kelsey's passion and privilege to work as a full-service
-                  editor. She's worked across many different genres and
-                  specializes in content development, so that your story is YOUR
-                  story – polished.
+                  Kelsey has more than five years of experience working with
+                  writers of all skill levels, both in fiction and non-fiction
+                  fields. She's drawn to speculative fiction and #OwnVoices
+                  stories, but she has also edited historical and contemporary
+                  romance, academic papers, memoir, and numerous other genres.
                 </Typography>
               </CardContent>
             </div>
