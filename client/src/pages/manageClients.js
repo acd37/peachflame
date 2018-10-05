@@ -19,7 +19,7 @@ import {
 
 const styles = {
   tableContainer: {
-    margin: "20px auto",
+    margin: 40,
     maxWidth: "100%",
     overflowX: "auto"
   },

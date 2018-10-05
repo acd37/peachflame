@@ -257,7 +257,9 @@ class Client extends Component {
                 activeProjects.map(i => (
                   <ProjectRow
                     colSpan={6}
-                    key={i}
+                    key={i.id}
+                    user={_id}
+                    id={i.id}
                     title={i.title}
                     project_manager={i.project_manager}
                     quoted_amount={i.quoted_amount}
