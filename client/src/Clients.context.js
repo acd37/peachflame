@@ -62,8 +62,12 @@ export class ClientsProvider extends Component {
       }
     });
 
+    const clientsOnly = res.data.filter(
+      client => client.client_type !== "Administrator"
+    );
+
     this.setState({
-      clients: res.data
+      clients: clientsOnly
     });
   }
 
