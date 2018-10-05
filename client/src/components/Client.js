@@ -7,9 +7,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  DialogContentText,
   TextField,
-  MenuItem,
-  Collapse
+  MenuItem
 } from "@material-ui/core";
 import axios from "axios";
 import { ClientsConsumer } from "../Clients.context";
@@ -77,10 +77,23 @@ class Client extends Component {
     project_type: "",
     quoted_amount: "",
     project_manager: "",
-    showProjects: false
+    showProjects: false,
+    delete_dialog: false,
+    delete_dialog_id: ""
   };
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  handleClickOpen = async id => {
+    this.setState({
+      delete_dialog: true,
+      delete_dialog_id: id
+    });
+  };
+
+  handleClose = () => {
+    this.setState({ delete_dialog: false });
+  };
 
   handleDelete = async (id, dispatch) => {
     let localToken = localStorage.getItem("peachflame");
@@ -246,7 +259,7 @@ class Client extends Component {
                   <i
                     className="material-icons"
                     style={styles.icon}
-                    onClick={this.handleDelete.bind(this, _id, dispatch)}
+                    onClick={this.handleClickOpen.bind(this, _id)}
                   >
                     delete
                   </i>
@@ -416,6 +429,34 @@ class Client extends Component {
                     autoFocus
                   >
                     Add Project
+                  </Button>
+                </DialogActions>
+              </Dialog>
+
+              <Dialog
+                open={this.state.delete_dialog}
+                onClose={this.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Are you sure?"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Are you sure you want to delete this client? All data will
+                    be deleted and cannot be restored.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={this.handleClose} color="primary">
+                    No, cancel
+                  </Button>
+                  <Button
+                    onClick={this.handleDelete.bind(this, _id, dispatch)}
+                    color="primary"
+                  >
+                    Yes, I'm sure
                   </Button>
                 </DialogActions>
               </Dialog>

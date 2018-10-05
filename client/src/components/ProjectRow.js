@@ -1,5 +1,14 @@
-import React, { Component } from "react";
-import { Typography, Paper, Button } from "@material-ui/core";
+import React, { Component, Fragment } from "react";
+import {
+  Typography,
+  Paper,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+  Button
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Build from "@material-ui/icons/Build";
 import axios from "axios";
@@ -31,6 +40,22 @@ const styles = {
 };
 
 class ProjectRow extends Component {
+  state = {
+    delete_dialog: false,
+    delete_dialog_id: ""
+  };
+
+  handleClickOpen = async id => {
+    this.setState({
+      delete_dialog: true,
+      delete_dialog_id: id
+    });
+  };
+
+  handleClose = () => {
+    this.setState({ delete_dialog: false });
+  };
+
   handleDeleteProject = async (id, user, dispatch) => {
     console.log(id + user);
 
@@ -61,33 +86,62 @@ class ProjectRow extends Component {
           const { dispatch } = value.state;
           const { id, user } = this.props;
           return (
-            <Paper style={styles.paper}>
-              <Typography variant="title" style={styles.title} gutterbottom>
-                {this.props.title}
-              </Typography>
-              <Typography component="p" color="textSecondary">
-                Project Type: {this.props.project_type}
-              </Typography>
-              <Typography component="p" color="textSecondary">
-                Project Manager: {this.props.project_manager}
-              </Typography>
-              <Typography component="p" color="textSecondary">
-                Quote: ${this.props.quoted_amount}
-              </Typography>
-              <div style={styles.iconBox}>
-                <DeleteIcon
-                  style={styles.icon}
-                  onClick={this.handleDeleteProject.bind(
-                    this,
+            <Fragment>
+              <Paper style={styles.paper}>
+                <Typography variant="title" style={styles.title} gutterbottom>
+                  {this.props.title}
+                </Typography>
+                <Typography component="p" color="textSecondary">
+                  Project Type: {this.props.project_type}
+                </Typography>
+                <Typography component="p" color="textSecondary">
+                  Project Manager: {this.props.project_manager}
+                </Typography>
+                <Typography component="p" color="textSecondary">
+                  Quote: ${this.props.quoted_amount}
+                </Typography>
+                <div style={styles.iconBox}>
+                  <DeleteIcon
+                    style={styles.icon}
+                    onClick={this.handleClickOpen.bind(this, id, user)}
+                  />
+                  <Build style={styles.icon} />
+                </div>
+              </Paper>
 
-                    id,
-                    user,
-                    dispatch
-                  )}
-                />
-                <Build style={styles.icon} />
-              </div>
-            </Paper>
+              <Dialog
+                open={this.state.delete_dialog}
+                onClose={this.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Are you sure?"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Are you sure you want to delete this client? All data will
+                    be deleted and cannot be restored.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={this.handleClose} color="primary">
+                    No, cancel
+                  </Button>
+                  <Button
+                    onClick={this.handleDeleteProject.bind(
+                      this,
+                      id,
+                      user,
+                      dispatch
+                    )}
+                    color="primary"
+                  >
+                    Yes, I'm sure
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </Fragment>
           );
         }}
       </ClientsConsumer>
