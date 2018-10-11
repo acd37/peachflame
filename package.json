@@ -44,6 +44,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "uuid": "^3.3.2",
-    "validator": "^10.7.1"
+    "validator": "^10.7.1",
+    "xoauth2": "^1.2.0"
   }
 }

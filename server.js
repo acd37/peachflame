@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const chalk = require("chalk");
 const users = require("./routes/users");
 const projects = require("./routes/projects");
+const email = require("./routes/email");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -39,6 +40,7 @@ mongoose
 // api routes
 app.use("/api/users", users);
 app.use("/api/projects", projects);
+app.use("/api/email", email);
 
 //starting app
 app.get("*", (req, res) => {

@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Typography, Card, CardContent, CardMedia } from "@material-ui/core";
 import Banner from "../components/Banner";
-import alec from "../images/alec.jpg";
-import kelsey from "../images/kelsey.jpg";
-import max from "../images/max.jpg";
+import alec from "../images/alec.png";
+import kelsey from "../images/kelsey.png";
+import max from "../images/max.png";
 
 const styles = {
   root: {
