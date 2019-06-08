@@ -69,7 +69,7 @@ const styles = {
 class Quote extends Component {
     state = {
         errors: {},
-        messages: {},
+        messages: '',
         checkedDevelopmental: false,
         checkedCopy: false,
         checkedLine: false,
@@ -244,40 +244,10 @@ class Quote extends Component {
                         </div>
 
                         <FormControl component="fieldset" style={styles.formControl}>
-                            {this.state.messages.error && (
-                                <div
-                                    class="alert alert-danger alert-dismissible fade show"
-                                    role="alert"
-                                >
-                                    {this.state.messages.error}
-                                    <button
-                                        type="button"
-                                        class="close"
-                                        data-dismiss="alert"
-                                        aria-label="Close"
-                                    >
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            )}
-
-                            {this.state.messages.success && (
-                                <div
-                                    class="alert alert-success alert-dismissible fade show"
-                                    role="alert"
-                                >
-                                    {this.state.messages.success}
-                                    <button
-                                        type="button"
-                                        class="close"
-                                        data-dismiss="alert"
-                                        aria-label="Close"
-                                    >
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            )}
-
+                            {
+                                this.state.messages &&
+                                <p className="success-message">{this.state.messages}</p>
+                            }
                             <Button
                                 style={styles.button}
                                 disabled={this.state.loading}

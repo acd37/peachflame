@@ -89,11 +89,19 @@ router.post('/password',
                     user.password = hash;
                     user
                         .save()
-                        .then(user => res.json(user))
+                        .then(user => res.json({
+                            ...user,
+                            password: {
+                                success: true,
+                                msg: "Password successfully changed."
+                            }
+                        }))
                         .catch(err => console.log(err));
                 });
             });
         })
+            .catch(err =>
+                console.log(err))
     });
 
 

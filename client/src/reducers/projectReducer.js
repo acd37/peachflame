@@ -4,12 +4,14 @@ import {
     UPDATE_PROJECT,
     DELETE_PROJECT,
     SET_PROJECT,
-    LOADING
+    LOADING,
+    SET_PROJECT_DATA
 } from '../actions/types';
 
 const initialState = {
     projects: [],
     project: {},
+    projectData: {},
     loading: false
 };
 
@@ -17,6 +19,12 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
+        case SET_PROJECT_DATA: {
+            return {
+                ...state,
+                projectData: action.payload
+            }
+        }
         case DELETE_PROJECT:
             return {
                 ...state,

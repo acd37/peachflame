@@ -6,10 +6,11 @@ import { LinearProgress, Button } from '@material-ui/core/';
 import Project from '../components/Project';
 import Banner from '../components/Banner';
 import { Link } from 'react-router-dom';
+import Data from '../components/dashboard/Data';
 
 const styles = {
     loadingWrapper: {
-        margin: '30px auto',
+        margin: '100px auto',
         maxWidth: 400,
         display: 'flex',
         alignItems: 'center',
@@ -65,6 +66,9 @@ class Dashboard extends Component {
                 <div>
                     <Banner title="Dashboard" />
 
+                    <h2> Data </h2>
+                    <Data />
+
                     <h2> Projects </h2>
 
                     {projects &&
@@ -91,8 +95,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
     getUserProjects: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    // projects: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

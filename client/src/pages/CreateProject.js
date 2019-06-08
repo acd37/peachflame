@@ -5,6 +5,9 @@ import { createProject } from '../actions/projectActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const styles = {
     container: {
@@ -66,6 +69,12 @@ class CreateProject extends Component {
     handleChange = () => {
         this.setState(state => ({ checked: !state.checked }));
     };
+
+    handleDeadlineChange = (date) => {
+        this.setState({
+            deadline: date
+        });
+    }
 
     handleSaveProject = e => {
         e.preventDefault();
@@ -186,17 +195,17 @@ class CreateProject extends Component {
                         </div>
 
                         <div style={styles.inputContainer}>
+
                             <div>
 
                                 <label htmlFor="deadline" style={styles.customInputLabel}>Deadline</label>
-
-                                <input
-                                    style={styles.customInput}
-                                    placeholder="Deadline"
-                                    name="deadline"
-                                    value={this.state.deadline}
-                                    onChange={this.onChange}
+                                <DatePicker
+                                    placeholderText="Click to select a date"
+                                    className="select-css-date"
+                                    selected={this.state.deadline}
+                                    onChange={this.handleDeadlineChange}
                                 />
+
                             </div>
                             <div>
 

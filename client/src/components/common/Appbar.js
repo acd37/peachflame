@@ -89,6 +89,11 @@ class Appbar extends Component {
                         Create Project
                     </Link>
                 </Button>
+                <Button color="inherit">
+                    <Link style={styles.appBarButton} to="/dashboard/account">
+                        Account
+                    </Link>
+                </Button>
 
                 <Button
                     style={styles.logoutButton}
@@ -122,6 +127,8 @@ class Appbar extends Component {
                         Meet the Editor
                     </Link>
                 </Button>
+
+
 
                 <Button style={styles.dashboardButton} color="inherit">
                     <Link style={styles.appBarButton} to="/login">

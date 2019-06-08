@@ -123,20 +123,20 @@ class Project extends Component {
                 <div>
                     {project.status === 'delivered' && (
                         <Chip
-                            label={project.status}
+                            label={`Status: ${project.status}`}
                             className={classes.success_chip}
                         />
-                        // <span className={classes.success}></span>
+
                     )}
                     {project.status === 'pending' && (
                         <Chip
-                            label={project.status}
+                            label={`Status: ${project.status}`}
                             className={classes.caution_chip}
                         />
                     )}
                     {project.status === 'queued' && (
                         <Chip
-                            label={project.status}
+                            label={`Status: ${project.status}`}
                             className={classes.danger_chip}
                         />
                     )}
@@ -144,19 +144,19 @@ class Project extends Component {
                 <div>
                     {project.payment_status === 'paid' && (
                         <Chip
-                            label={project.payment_status}
+                            label={`Pmt: ${project.payment_status}`}
                             className={classes.success_chip}
                         />
                     )}
                     {project.payment_status === 'pending' && (
                         <Chip
-                            label={project.payment_status}
+                            label={`Pmt: ${project.payment_status}`}
                             className={classes.caution_chip}
                         />
                     )}
                     {project.payment_status === 'invoiced' && (
                         <Chip
-                            label={project.payment_status}
+                            label={`Pmt: ${project.payment_status}`}
                             className={classes.danger_chip}
                         />
                     )}

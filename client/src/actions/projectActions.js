@@ -8,7 +8,8 @@ import {
     GET_ERRORS,
     CLEAR_ERRORS,
     UPDATE_PROJECT,
-    SET_PROJECT
+    SET_PROJECT,
+    SET_PROJECT_DATA
 } from './types';
 
 export const updateProject = (projectData) => dispatch => {
@@ -32,7 +33,7 @@ export const updateProject = (projectData) => dispatch => {
 
 export const getProject = (projectId) => dispatch => {
     axios
-        .get(`/api/projects/${projectId}`)
+        .get(`/api/projects/project/${projectId}`)
         .then(res =>
             dispatch({
                 type: SET_PROJECT,
@@ -47,18 +48,47 @@ export const getProject = (projectId) => dispatch => {
         );
 }
 
+export const getProjectData = () => dispatch => {
+    axios
+        .get(`/api/projects/data/`)
+        .then(res =>
+            dispatch({
+                type: SET_PROJECT_DATA,
+                payload: res.data
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type: SET_PROJECT_DATA,
+                payload: {}
+            })
+        );
+}
+
 // get current profile
 export const getUserProjects = () => dispatch => {
     dispatch(setLoading());
 
     axios
         .get('/api/projects')
-        .then(res =>
+        .then(res => {
+            let projects = res.data;
+
+            projects.sort(function (a, b) {
+                var deadlineA = a.deadline.toLowerCase();
+                var deadlineB = b.deadline.toLowerCase();
+
+                if (deadlineA < deadlineB) return 1;
+                if (deadlineA > deadlineB) return -1;
+                return 0;
+            });
+
+
             dispatch({
                 type: SET_PROJECTS,
-                payload: res.data
+                payload: projects
             })
-        )
+        })
         .catch(err =>
             dispatch({
                 type: SET_PROJECTS,
@@ -90,7 +120,7 @@ export const createProject = projectData => dispatch => {
 // delete project
 export const deleteProject = id => dispatch => {
     axios
-        .delete(`/api/projects/${id}`)
+        .delete(`/api/projects/project/${id}`)
         .then(res =>
             dispatch({
                 type: DELETE_PROJECT,

@@ -15,6 +15,18 @@ h2 {
     font-weight: 300;
 }
 
+.project-link-style {
+    text-decoration: none;
+    color: #fc7967;
+}
+
+.error-message, .success-message {
+    color: #fc7967;
+    font-size: 0.8rem;
+    margin: 10px;
+}
+
+
 .image_logo {
     filter: #ccc; /* IE6-9 */
     -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
@@ -41,6 +53,23 @@ h2 {
 	font-weight: 300;
 	padding: 1.5em 1.4em 1.5em .8em;
 	width: 440px;
+	max-width: 100%; 
+	margin-top: 20px;
+	border: none;
+	box-shadow: 0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1);
+	border-radius: .375rem;
+	background-color: #fff;
+}
+
+.select-css-date{
+    appearance: none;
+    -moz-appearance: none;
+	-webkit-appearance: none;
+	display: block;
+	font-size: 0.8rem;
+	font-weight: 300;
+	padding: 1.5em 1.4em 1.5em .8em;
+	width: 410px;
 	max-width: 100%; 
 	margin-top: 20px;
 	border: none;

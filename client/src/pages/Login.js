@@ -121,13 +121,19 @@ class Login extends Component {
         };
 
         this.props.loginUser(userData);
-    };
+
+
+    }
+
 
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
     render() {
+
+        const { errors } = this.state;
+
         return (
             <Fragment>
                 <Banner title="Login" />
@@ -148,6 +154,10 @@ class Login extends Component {
                             value={this.state.email}
                             onChange={this.handleChange('email')}
                         />
+                        {errors.email &&
+                            <p className="error-message">{errors.email}</p>
+                        }
+
                         <label htmlFor="password" style={styles.customInputLabel}>Password</label>
                         <div style={styles.passwordWrapper}>
 
@@ -159,6 +169,9 @@ class Login extends Component {
                                 value={this.state.password}
                                 onChange={this.handleChange('password')}
                             />
+                            {errors.password &&
+                                <p className="error-message">{errors.password}</p>
+                            }
                             <InputAdornment style={styles.passwordToggler}>
                                 <IconButton
                                     aria-label="Toggle password visibility"

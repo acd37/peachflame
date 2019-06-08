@@ -55,8 +55,11 @@ class AppbarTray extends Component {
                     <ListItem button component="a" href="/dashboard">
                         <ListItemText primary="Dashboard" />
                     </ListItem>
-                    <ListItem button component="a" href="/about">
-                        <ListItemText primary="Add Project" />
+                    <ListItem button component="a" href="/dashboard/create">
+                        <ListItemText primary="Create Project" />
+                    </ListItem>
+                    <ListItem button component="a" href="/dashboard/account">
+                        <ListItemText primary="Account" />
                     </ListItem>
                     <Divider />
                 </List>

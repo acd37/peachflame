@@ -23,6 +23,7 @@ import EditProject from './pages/EditProject';
 import Quote from './pages/Quote';
 import Appbar from './components/common/Appbar';
 import Footer from './components/common/Footer';
+import Account from './pages/Account';
 
 // redux
 import { setCurrentUser, logoutUser } from './actions/authActions';
@@ -61,6 +62,8 @@ class App extends Component {
               <Route exact path="/editor" component={Editor} />
               <Route exact path="/quote" component={Quote} />
 
+
+
               <Switch>
                 <PrivateRoute
                   exact
@@ -76,6 +79,11 @@ class App extends Component {
                   exact
                   path="/dashboard/update/:id"
                   component={EditProject}
+                />
+                <PrivateRoute
+                  exact
+                  path="/dashboard/account"
+                  component={Account}
                 />
               </Switch>
 

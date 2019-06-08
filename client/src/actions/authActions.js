@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwtDecode from 'jwt-decode';
 
-import { GET_ERRORS, SET_CURRENT_USER, LOADING, SET_PROJECTS } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, LOADING, SET_PROJECTS, UPDATE_PASSWORD } from './types';
 
 
 // Register
@@ -46,6 +46,23 @@ export const loginUser = userData => dispatch => {
         );
 };
 
+
+// changes user password
+export const updatePassword = data => dispatch => {
+    axios
+        .post('/api/users/password', data)
+        .then(res => {
+            dispatch({
+                type: UPDATE_PASSWORD,
+                payload: res.data.password
+            })
+        })
+        .catch(err => {
+            console.log(err);
+        }
+
+        );
+};
 
 
 

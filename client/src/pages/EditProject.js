@@ -63,7 +63,8 @@ class EditProject extends Component {
         invoice_number: '',
         is_completed: false,
         payment_status: '',
-        status: ''
+        status: '',
+        hours: ''
     };
 
     componentDidMount() {
@@ -89,7 +90,8 @@ class EditProject extends Component {
                 invoice_number: nextProps.project.invoice_number,
                 is_completed: nextProps.project.is_completed,
                 payment_status: nextProps.project.payment_status,
-                status: nextProps.project.status
+                status: nextProps.project.status,
+                hours: nextProps.project.hours
             })
         }
     }
@@ -121,7 +123,8 @@ class EditProject extends Component {
             invoice_number: this.state.invoice_number,
             is_completed: this.state.is_completed,
             payment_status: this.state.payment_status,
-            status: this.state.status
+            status: this.state.status,
+            hours: this.state.hours
         };
 
         this.props.updateProject(updatedProject);

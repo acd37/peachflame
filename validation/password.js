@@ -4,9 +4,15 @@ const isEmpty = require('./is-empty');
 module.exports = function validateRegisterInput(data) {
     let errors = {};
 
+
+    data.currentPass = !isEmpty(data.currentPass) ? data.currentPass : '';
     data.password = !isEmpty(data.password) ? data.password : '';
     data.password2 = !isEmpty(data.password2) ? data.password2 : '';
 
+
+    if (validator.isEmpty(data.currentPass)) {
+        errors.currentPass = 'Current password field is required.';
+    }
 
     if (validator.isEmpty(data.password)) {
         errors.password = 'Password field is required.';

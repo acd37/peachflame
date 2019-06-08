@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
+const moment = require('moment');
 
 // Load user model
 const Project = require('../../models/Project');
@@ -105,7 +106,7 @@ router.get('/',
 // @route   GET api/projects/:id
 // @desc    Get project by id
 // @access  Private
-router.get('/:id',
+router.get('/project/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Project.findById(req.params.id)
@@ -141,5 +142,97 @@ router.delete(
         });
     }
 );
+
+// @route   GET api/projects/data
+// @desc    Get project financial data
+// @access  Private
+router.get('/data',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Project.find({
+            user: req.user.id
+        })
+            .then(projects => {
+
+                let data = {
+                    "jan": 0,
+                    "feb": 0,
+                    "mar": 0,
+                    "apr": 0,
+                    "may": 0,
+                    "jun": 0,
+                    "jul": 0,
+                    "aug": 0,
+                    "sep": 0,
+                    "oct": 0,
+                    "nov": 0,
+                    "dec": 0,
+                };
+
+                for (var i = 0; i < projects.length; i++) {
+                    if ((moment(projects[i].deadline).year() == 2019) && (projects[i].status === "delivered")) {
+
+                        switch (projects[i].billed_month) {
+                            case "1":
+                                data.jan += projects[i].project_fee;
+                                console.log(data.jan)
+                                break;
+                            case "2":
+                                data.feb += projects[i].project_fee;
+                                console.log(data.feb)
+                                break;
+                            case "3":
+                                data.mar += projects[i].project_fee;
+                                console.log(data.mar)
+                                break;
+                            case "4":
+                                data.apr += projects[i].project_fee;
+                                console.log(data.apr)
+                                break;
+                            case "5":
+                                data.may += projects[i].project_fee;
+                                console.log(data.may)
+                                break;
+                            case "6":
+                                data.jun += projects[i].project_fee;
+                                console.log(data.jun)
+                                break;
+                            case "7":
+                                data.jul += projects[i].project_fee;
+                                console.log(data.jul)
+                                break;
+                            case "8":
+                                data.aug += projects[i].project_fee;
+                                console.log(data.aug)
+                                break;
+                            case "9":
+                                data.sep += projects[i].project_fee;
+                                console.log(data.sep)
+                                break;
+                            case "10":
+                                data.oct += projects[i].project_fee;
+                                console.log(data.oct)
+                                break;
+                            case "11":
+                                data.nov += projects[i].project_fee;
+                                console.log(data.nov)
+                                break;
+                            case "12":
+                                data.dec += projects[i].project_fee;
+                                console.log(data.dec)
+                                break;
+                        }
+
+                    }
+                }
+
+
+                res.json(data)
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(404).json({ noprojects: 'No projects found for this user.' })
+            });
+    });
 
 module.exports = router;
