@@ -1,0 +1,10 @@
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const LOADING = 'LOADING';
+export const REMOVE_LOADING = 'REMOVE_LOADING'
+export const GET_ERRORS = 'GET_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const SET_PROJECTS = 'SET_PROJECTS';
+export const CREATE_PROJECT = 'CREATE_PROJECT';
+export const DELETE_PROJECT = 'DELETE_PROJECT';
+export const UPDATE_PROJECT = 'UPDATE_PROJECT';
+export const SET_PROJECT = 'SET_PROJECT';
