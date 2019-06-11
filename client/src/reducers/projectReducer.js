@@ -38,7 +38,8 @@ export default function (state = initialState, action) {
         case UPDATE_PROJECT:
             return {
                 ...state,
-                projects: [action.payload, ...state.projects]
+                project: action.payload,
+                loading: false
             };
         case LOADING:
             return {

@@ -55,38 +55,40 @@ router.post(
     '/update/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-
-        console.log(req.params.id)
-        Project.findById(req.params.id).then(project => {
-
-
-            project.updateOne({
-                user: req.user.id,
-                client: req.body.client,
-                project_type: req.body.project_type,
-                title: req.body.title,
-                author: req.body.author,
-                word_count: req.body.word_count,
-                project_fee: req.body.project_fee,
-                cents_per_word: req.body.cents_per_word,
-                deadline: req.body.deadline,
-                status: req.body.status,
-                payment_status: req.body.payment_status,
-                billed_month: req.body.billed_month,
-                billed_year: req.body.billed_year,
-                hours: req.body.hours,
-                invoice_number: req.body.invoice_number,
-                sow_number: req.body.sow_number,
+        Project.findOneAndUpdate(
+            {
+                _id: req.params.id
+            },
+            {
+                $set: {
+                    user: req.user.id,
+                    client: req.body.client,
+                    project_type: req.body.project_type,
+                    title: req.body.title,
+                    author: req.body.author,
+                    word_count: req.body.word_count,
+                    project_fee: req.body.project_fee,
+                    cents_per_word: req.body.cents_per_word,
+                    deadline: req.body.deadline,
+                    status: req.body.status,
+                    payment_status: req.body.payment_status,
+                    billed_month: req.body.billed_month,
+                    billed_year: req.body.billed_year,
+                    hours: req.body.hours,
+                    invoice_number: req.body.invoice_number,
+                    sow_number: req.body.sow_number,
+                    is_completed: req.body.is_completed
+                }
+            },
+            {
+                new: true
+            }
+        )
+            .then(project => {
+                res.json(project);
             })
-                .then(() => Project.find())
-                .then(projects => {
-                    res.json(projects);
-                })
-                .catch(err => console.log(err));
-        })
-
-    }
-);
+            .catch(err => console.log(err));
+    });
 
 // @route   GET api/projects
 // @desc    Get projects by logged in user

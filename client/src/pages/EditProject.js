@@ -91,7 +91,8 @@ class EditProject extends Component {
                 is_completed: nextProps.project.is_completed,
                 payment_status: nextProps.project.payment_status,
                 status: nextProps.project.status,
-                hours: nextProps.project.hours
+                hours: nextProps.project.hours,
+                is_completed: nextProps.project.is_completed
             })
         }
     }
@@ -124,7 +125,8 @@ class EditProject extends Component {
             is_completed: this.state.is_completed,
             payment_status: this.state.payment_status,
             status: this.state.status,
-            hours: this.state.hours
+            hours: this.state.hours,
+            completed: this.state.is_completed
         };
 
         this.props.updateProject(updatedProject);
