@@ -37,6 +37,10 @@ const styles = {
     linkButton: {
         color: "#fff",
         textDecoration: 'none'
+    },
+    noProjects: {
+        textAlign: 'center',
+        marginBottom: 30
     }
 }
 
@@ -71,6 +75,8 @@ class Dashboard extends Component {
 
                     <h2> Projects </h2>
 
+
+
                     {projects &&
                         <div>
                             {projects.map(project => (
@@ -78,7 +84,12 @@ class Dashboard extends Component {
                             ))}
                         </div>
                     }
-                </div>
+
+                    {
+                        projects.length < 1 &&
+                        <p style={styles.noProjects}> There are no projects here yet. <Link to="/dashboard/create/">Get started! </Link> </p>
+                    }
+                </div >
             )
 
 
@@ -88,7 +99,7 @@ class Dashboard extends Component {
         return (
             <div>
                 {content}
-            </div>
+            </div >
         )
     }
 }

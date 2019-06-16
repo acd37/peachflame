@@ -8,6 +8,10 @@ import { loginUser } from '../actions/authActions';
 import PropTypes from 'prop-types';
 
 const styles = {
+    guestUser: {
+        fontSize: '0.8rem',
+        color: 'rgba(0,0,0,0.6)'
+    },
     loginWrapper: {
         maxWidth: '90%',
         width: 300,
@@ -190,6 +194,9 @@ class Login extends Component {
                             Login
                                 </Button>
                     </form>
+                    <div>
+                        <p style={styles.guestUser}> To test, enter 'guest@gmail.com' as the username and 'password' as the password.</p>
+                    </div>
                 </div>
             </Fragment >
         );
