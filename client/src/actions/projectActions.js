@@ -120,7 +120,7 @@ export const createProject = projectData => dispatch => {
 // delete project
 export const deleteProject = id => dispatch => {
     axios
-        .delete(`/api/projects/project/${id}`)
+        .delete(`/api/projects/${id}`)
         .then(res =>
             dispatch({
                 type: DELETE_PROJECT,
