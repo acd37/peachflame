@@ -44,7 +44,9 @@ router.post(
             sow_number: req.body.sow_number,
         });
 
-        newProject.save().then(project => res.json(project));
+        newProject.save().then(project => {
+            res.status(200).json(project)
+        });
     }
 );
 

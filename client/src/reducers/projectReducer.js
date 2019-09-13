@@ -33,7 +33,7 @@ export default function (state = initialState, action) {
         case CREATE_PROJECT:
             return {
                 ...state,
-                projects: [action.payload, ...state.projects]
+                response: action.payload.response
             };
         case UPDATE_PROJECT:
             return {
