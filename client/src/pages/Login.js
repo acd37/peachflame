@@ -1,6 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import Banner from '../components/Banner';
-import { TextField, Button, InputAdornment, IconButton, Input, InputLabel, FormControl, CircularProgress } from '@material-ui/core';
+import {
+    TextField,
+    Button,
+    InputAdornment,
+    IconButton,
+    Input,
+    InputLabel,
+    FormControl,
+    CircularProgress
+} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { connect } from 'react-redux';
@@ -63,12 +72,12 @@ const styles = {
     },
     button: {
         width: 300,
-        backgroundColor: "#fc7967",
+        backgroundColor: '#fc7967',
         marginTop: 20,
-        color: "#fff",
+        color: '#fff',
         fontWeight: 300,
         letterSpacing: 1.2,
-        padding: "5px 30px"
+        padding: '5px 30px'
     },
     passwordWrapper: {
         position: 'relative'
@@ -78,14 +87,13 @@ const styles = {
         right: 0,
         top: '45px'
     }
-}
+};
 
 class Login extends Component {
     constructor() {
         super();
         this.state = {
             loading: false,
-            errors: {},
             email: '',
             password: ''
         };
@@ -125,31 +133,27 @@ class Login extends Component {
         };
 
         this.props.loginUser(userData);
-
-
-    }
-
+    };
 
     handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
     render() {
-
-        const { errors } = this.state;
-
         return (
             <Fragment>
                 <Banner title="Login" />
 
                 <div style={styles.loginWrapper}>
-                    <img src={require('../images/peachflame.png')} style={styles.logo} alt="cs logo" />
-                    <form
-                        autoComplete="off"
-                        onSubmit={this.handleLoginUser}
-                    >
-
-                        <label htmlFor="email" style={styles.customInputLabel}>Email</label>
+                    <img
+                        src={require('../images/peachflame.png')}
+                        style={styles.logo}
+                        alt="cs logo"
+                    />
+                    <form autoComplete="off" onSubmit={this.handleLoginUser}>
+                        <label htmlFor="email" style={styles.customInputLabel}>
+                            Email
+                        </label>
 
                         <input
                             style={styles.customInput}
@@ -158,47 +162,54 @@ class Login extends Component {
                             value={this.state.email}
                             onChange={this.handleChange('email')}
                         />
-                        {errors.email &&
-                            <p className="error-message">{errors.email}</p>
-                        }
 
-                        <label htmlFor="password" style={styles.customInputLabel}>Password</label>
+                        <label
+                            htmlFor="password"
+                            style={styles.customInputLabel}
+                        >
+                            Password
+                        </label>
                         <div style={styles.passwordWrapper}>
-
                             <input
-                                type={this.state.showPassword ? 'text' : 'password'}
+                                type={
+                                    this.state.showPassword
+                                        ? 'text'
+                                        : 'password'
+                                }
                                 style={styles.customInput}
                                 placeholder="Password"
                                 name="password"
                                 value={this.state.password}
                                 onChange={this.handleChange('password')}
                             />
-                            {errors.password &&
-                                <p className="error-message">{errors.password}</p>
-                            }
+
                             <InputAdornment style={styles.passwordToggler}>
                                 <IconButton
                                     aria-label="Toggle password visibility"
                                     onClick={this.handleClickShowPassword}
                                 >
-                                    {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    {this.state.showPassword ? (
+                                        <Visibility />
+                                    ) : (
+                                        <VisibilityOff />
+                                    )}
                                 </IconButton>
                             </InputAdornment>
                         </div>
 
-
-                        <Button
-                            type="submit"
-                            style={styles.button}
-                        >
+                        <Button type="submit" style={styles.button}>
                             Login
-                                </Button>
+                        </Button>
                     </form>
                     <div>
-                        <p style={styles.guestUser}> To test, enter 'guest@gmail.com' as the username and 'password' as the password.</p>
+                        <p style={styles.guestUser}>
+                            {' '}
+                            To test, enter 'guest@gmail.com' as the username and
+                            'password' as the password.
+                        </p>
                     </div>
                 </div>
-            </Fragment >
+            </Fragment>
         );
     }
 }

@@ -5,6 +5,7 @@ import { updateProject, getProject } from '../actions/projectActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 const styles = {
     container: {
@@ -34,16 +35,16 @@ const styles = {
         color: '#999'
     },
     linkButton: {
-        color: "#fff",
+        color: '#fff',
         textDecoration: 'none'
     },
     button: {
-        backgroundColor: "#fc7967",
+        backgroundColor: '#fc7967',
         marginTop: 20,
-        color: "#fff",
+        color: '#fff',
         fontWeight: 300,
         letterSpacing: 1.2,
-        padding: "5px 30px"
+        padding: '5px 30px'
     }
 };
 
@@ -72,7 +73,7 @@ class EditProject extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
+        console.log(nextProps);
         if (nextProps.project) {
             this.setState({
                 id: nextProps.project._id,
@@ -93,7 +94,7 @@ class EditProject extends Component {
                 status: nextProps.project.status,
                 hours: nextProps.project.hours,
                 is_completed: nextProps.project.is_completed
-            })
+            });
         }
     }
 
@@ -107,6 +108,54 @@ class EditProject extends Component {
 
     handleSaveProject = e => {
         e.preventDefault();
+
+        if (!this.state.client) {
+            return this.props.createMessage({
+                client: 'You must specify a client.'
+            });
+        }
+
+        if (!this.state.title) {
+            return this.props.createMessage({
+                title: 'You must specify a title.'
+            });
+        }
+
+        if (!this.state.author) {
+            return this.props.createMessage({
+                author: 'You must specify a author.'
+            });
+        }
+
+        if (!this.state.project_type) {
+            return this.props.createMessage({
+                projectType: 'You must specify a project type.'
+            });
+        }
+
+        if (!this.state.word_count) {
+            return this.props.createMessage({
+                word_count: 'You must specify a word count.'
+            });
+        }
+
+        if (!this.state.project_fee) {
+            return this.props.createMessage({
+                project_fee: 'You must specify a project fee'
+            });
+        }
+
+        if (!this.state.deadline) {
+            return this.props.createMessage({
+                deadline: 'You must specify a deadline'
+            });
+        }
+
+        if (!this.state.sow_number) {
+            return this.props.createMessage({
+                sow_number: 'You must specify a Scope of Work #'
+            });
+        }
 
         const updatedProject = {
             id: this.state.id,
@@ -130,7 +179,6 @@ class EditProject extends Component {
         };
 
         this.props.updateProject(updatedProject);
-
     };
 
     render() {
@@ -140,13 +188,19 @@ class EditProject extends Component {
 
                 <div style={styles.container}>
                     <Button style={styles.button}>
-                        <Link style={styles.linkButton} to="/dashboard">Back to Dashboard</Link>
+                        <Link style={styles.linkButton} to="/dashboard">
+                            Back to Dashboard
+                        </Link>
                     </Button>
                     <form onSubmit={this.handleSaveProject}>
-
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="client" style={styles.customInputLabel}>Client name</label>
+                                <label
+                                    htmlFor="client"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Client name
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Client name"
@@ -156,7 +210,12 @@ class EditProject extends Component {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="project_type" style={styles.customInputLabel}>Project type</label>
+                                <label
+                                    htmlFor="project_type"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Project type
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Project type"
@@ -169,7 +228,12 @@ class EditProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="title" style={styles.customInputLabel}>Project title</label>
+                                <label
+                                    htmlFor="title"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Project title
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Project title"
@@ -179,7 +243,12 @@ class EditProject extends Component {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="author" style={styles.customInputLabel}>Author name</label>
+                                <label
+                                    htmlFor="author"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Author name
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Author name"
@@ -192,7 +261,12 @@ class EditProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="word_count" style={styles.customInputLabel}>Word count</label>
+                                <label
+                                    htmlFor="word_count"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Word count
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Word count"
@@ -202,7 +276,12 @@ class EditProject extends Component {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="project_fee" style={styles.customInputLabel}>Project fee</label>
+                                <label
+                                    htmlFor="project_fee"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Project fee
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Project fee"
@@ -215,17 +294,29 @@ class EditProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="deadline" style={styles.customInputLabel}>Deadline</label>
+                                <label
+                                    htmlFor="deadline"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Deadline
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Deadline"
                                     name="deadline"
-                                    value={this.state.deadline}
+                                    value={moment(this.state.deadline).format(
+                                        'MM-DD-YY'
+                                    )}
                                     onChange={this.onChange}
                                 />
                             </div>
                             <div>
-                                <label htmlFor="sow_number" style={styles.customInputLabel}>SoW number</label>
+                                <label
+                                    htmlFor="sow_number"
+                                    style={styles.customInputLabel}
+                                >
+                                    * SoW number
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="SoW number"
@@ -238,13 +329,17 @@ class EditProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="billed_month" style={styles.customInputLabel}>Billed month</label>
+                                <label
+                                    htmlFor="billed_month"
+                                    style={styles.customInputLabel}
+                                >
+                                    Billed month
+                                </label>
 
                                 <select
                                     value={
                                         this.state.billed_month &&
                                         this.state.billed_month
-
                                     }
                                     onChange={this.onChange}
                                     name="billed_month"
@@ -264,10 +359,14 @@ class EditProject extends Component {
                                     <option value="11">11 - Nov</option>
                                     <option value="12">12 - Dec</option>
                                 </select>
-
                             </div>
                             <div>
-                                <label htmlFor="hours" style={styles.customInputLabel}>Hours</label>
+                                <label
+                                    htmlFor="hours"
+                                    style={styles.customInputLabel}
+                                >
+                                    Hours
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="hours"
@@ -280,7 +379,12 @@ class EditProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="invoice_number" style={styles.customInputLabel}>Invoice number</label>
+                                <label
+                                    htmlFor="invoice_number"
+                                    style={styles.customInputLabel}
+                                >
+                                    Invoice number
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Invoice number"
@@ -290,12 +394,16 @@ class EditProject extends Component {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="payment_status" style={styles.customInputLabel}>Payment Status</label>
+                                <label
+                                    htmlFor="payment_status"
+                                    style={styles.customInputLabel}
+                                >
+                                    Payment Status
+                                </label>
                                 <select
                                     value={
                                         this.state.payment_status &&
                                         this.state.payment_status
-
                                     }
                                     onChange={this.onChange}
                                     name="payment_status"
@@ -310,26 +418,32 @@ class EditProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="status" style={styles.customInputLabel}>Status</label>
+                                <label
+                                    htmlFor="status"
+                                    style={styles.customInputLabel}
+                                >
+                                    Status
+                                </label>
                                 <select
                                     value={
-                                        this.state.status &&
-                                        this.state.status
-
+                                        this.state.status && this.state.status
                                     }
                                     onChange={this.onChange}
                                     name="status"
                                     className="select-css"
                                 >
-
                                     <option value="queued">queued</option>
                                     <option value="pending">pending</option>
                                     <option value="delivered">delivered</option>
                                 </select>
-
                             </div>
                             <div>
-                                <label htmlFor="is_completed" style={styles.customInputLabel}>Completed</label>
+                                <label
+                                    htmlFor="is_completed"
+                                    style={styles.customInputLabel}
+                                >
+                                    Completed
+                                </label>
                                 <select
                                     value={
                                         this.state.is_completed &&
@@ -342,15 +456,10 @@ class EditProject extends Component {
                                     <option value="true">Complete</option>
                                     <option value="false">Incomplete</option>
                                 </select>
-
-
                             </div>
                         </div>
 
-                        <Button
-                            type="submit"
-                            style={styles.button}
-                        >
+                        <Button type="submit" style={styles.button}>
                             Update
                         </Button>
                     </form>
@@ -360,10 +469,9 @@ class EditProject extends Component {
     }
 }
 
-
 EditProject.propTypes = {
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

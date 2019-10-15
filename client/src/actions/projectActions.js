@@ -9,29 +9,40 @@ import {
     CLEAR_ERRORS,
     UPDATE_PROJECT,
     SET_PROJECT,
-    SET_PROJECT_DATA
+    SET_PROJECT_DATA,
+    CREATE_MESSAGE
 } from './types';
 
-export const updateProject = (projectData) => dispatch => {
-    dispatch(clearErrors());
-
+export const updateProject = projectData => dispatch => {
     axios
         .post(`/api/projects/update/${projectData.id}`, projectData)
-        .then(res =>
+        .then(res => {
+            dispatch({
+                type: CREATE_MESSAGE,
+                payload: {
+                    projectUpdated: 'Project successfully updated.'
+                }
+            });
             dispatch({
                 type: UPDATE_PROJECT,
                 payload: res.data
-            })
-        )
-        .catch(err =>
+            });
+        })
+        .catch(err => {
+            dispatch({
+                type: CREATE_MESSAGE,
+                payload: {
+                    updateError: 'There was an issue updating your project.'
+                }
+            });
             dispatch({
                 type: GET_ERRORS,
                 payload: err.response.data
-            })
-        );
-}
+            });
+        });
+};
 
-export const getProject = (projectId) => dispatch => {
+export const getProject = projectId => dispatch => {
     axios
         .get(`/api/projects/project/${projectId}`)
         .then(res =>
@@ -46,7 +57,7 @@ export const getProject = (projectId) => dispatch => {
                 payload: {}
             })
         );
-}
+};
 
 export const getProjectData = () => dispatch => {
     axios
@@ -63,7 +74,7 @@ export const getProjectData = () => dispatch => {
                 payload: {}
             })
         );
-}
+};
 
 // get current profile
 export const getUserProjects = () => dispatch => {
@@ -74,7 +85,7 @@ export const getUserProjects = () => dispatch => {
         .then(res => {
             let projects = res.data;
 
-            projects.sort(function (a, b) {
+            projects.sort(function(a, b) {
                 var deadlineA = a.deadline.toLowerCase();
                 var deadlineB = b.deadline.toLowerCase();
 
@@ -83,11 +94,10 @@ export const getUserProjects = () => dispatch => {
                 return 0;
             });
 
-
             dispatch({
                 type: SET_PROJECTS,
                 payload: projects
-            })
+            });
         })
         .catch(err =>
             dispatch({
@@ -99,16 +109,20 @@ export const getUserProjects = () => dispatch => {
 
 // add post
 export const createProject = projectData => dispatch => {
-    dispatch(clearErrors());
-
     axios
         .post('/api/projects/create', projectData)
-        .then(res =>
+        .then(res => {
             dispatch({
                 type: CREATE_PROJECT,
                 payload: res.data
-            })
-        )
+            });
+            dispatch({
+                type: CREATE_MESSAGE,
+                payload: {
+                    projectCreated: 'Project successfully created'
+                }
+            });
+        })
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -121,12 +135,18 @@ export const createProject = projectData => dispatch => {
 export const deleteProject = id => dispatch => {
     axios
         .delete(`/api/projects/${id}`)
-        .then(res =>
+        .then(res => {
+            dispatch({
+                type: CREATE_MESSAGE,
+                payload: {
+                    projectDeleted: 'Project successfully deleted.'
+                }
+            });
             dispatch({
                 type: DELETE_PROJECT,
                 payload: id
-            })
-        )
+            });
+        })
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -135,16 +155,12 @@ export const deleteProject = id => dispatch => {
         );
 };
 
-
-
 // clear errors
 export const clearErrors = () => {
     return {
         type: CLEAR_ERRORS
     };
 };
-
-
 
 //  loading
 export const setLoading = () => {

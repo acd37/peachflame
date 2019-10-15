@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { deleteProject } from '../actions/projectActions';
 import moment from 'moment';
 import { withStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Chip from '@material-ui/core/Chip';
 
@@ -51,9 +50,15 @@ const styles = theme => ({
 class Project extends Component {
     state = {};
 
-    handleDelete = (project) => {
-        this.props.deleteProject(project._id);
-    }
+    handleDelete = project => {
+        const confirm = window.confirm(
+            'Are you sure you want to delete this project? This action cannot be undone.'
+        );
+
+        if (confirm) {
+            this.props.deleteProject(project._id);
+        }
+    };
 
     render() {
         const { classes, project } = this.props;
@@ -68,20 +73,13 @@ class Project extends Component {
                         {project.title}
                     </Link>
                 </div>
-                <div className={classes.cardText}>
-                    {project.client}
-                </div>
-                <div className={classes.cardText}>
-                    {project.author}
-                </div>
+                <div className={classes.cardText}>{project.client}</div>
+                <div className={classes.cardText}>{project.author}</div>
                 <div className={classes.cardText}>
                     ${project.project_fee.toLocaleString()}
                 </div>
 
-                <div
-                    className={classes.cardText}
-
-                >
+                <div className={classes.cardText}>
                     {/* This renders if the project deadline has already passed */}
                     {moment(project.deadline).isBefore(moment()) && (
                         <div className={classes.cardText}>
@@ -102,7 +100,9 @@ class Project extends Component {
                         project.status !== 'delivered' && (
                             <div className={classes.cardText}>
                                 <div style={{ color: '#66BB6A' }}>
-                                    {moment(project.deadline).add(1, "day").fromNow()}
+                                    {moment(project.deadline)
+                                        .add(1, 'day')
+                                        .fromNow()}
                                 </div>
 
                                 <div>
@@ -126,7 +126,6 @@ class Project extends Component {
                             label={`Status: ${project.status}`}
                             className={classes.success_chip}
                         />
-
                     )}
                     {project.status === 'pending' && (
                         <Chip
@@ -173,9 +172,7 @@ class Project extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-
-});
+const mapStateToProps = state => ({});
 
 export default connect(
     mapStateToProps,

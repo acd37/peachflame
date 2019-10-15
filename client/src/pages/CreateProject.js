@@ -5,9 +5,9 @@ import { createProject } from '../actions/projectActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker';
+import { createMessage } from '../actions/messageActions';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const styles = {
     container: {
@@ -37,16 +37,16 @@ const styles = {
         color: '#999'
     },
     linkButton: {
-        color: "#fff",
+        color: '#fff',
         textDecoration: 'none'
     },
     button: {
-        backgroundColor: "#fc7967",
+        backgroundColor: '#fc7967',
         marginTop: 20,
-        color: "#fff",
+        color: '#fff',
         fontWeight: 300,
         letterSpacing: 1.2,
-        padding: "5px 30px"
+        padding: '5px 30px'
     }
 };
 
@@ -70,14 +70,62 @@ class CreateProject extends Component {
         this.setState(state => ({ checked: !state.checked }));
     };
 
-    handleDeadlineChange = (date) => {
+    handleDeadlineChange = date => {
         this.setState({
             deadline: date
         });
-    }
+    };
 
     handleSaveProject = e => {
         e.preventDefault();
+
+        if (!this.state.client) {
+            return this.props.createMessage({
+                client: 'You must specify a client.'
+            });
+        }
+
+        if (!this.state.title) {
+            return this.props.createMessage({
+                title: 'You must specify a title.'
+            });
+        }
+
+        if (!this.state.author) {
+            return this.props.createMessage({
+                author: 'You must specify a author.'
+            });
+        }
+
+        if (!this.state.project_type) {
+            return this.props.createMessage({
+                projectType: 'You must specify a project type.'
+            });
+        }
+
+        if (!this.state.word_count) {
+            return this.props.createMessage({
+                word_count: 'You must specify a word count.'
+            });
+        }
+
+        if (!this.state.project_fee) {
+            return this.props.createMessage({
+                project_fee: 'You must specify a project fee'
+            });
+        }
+
+        if (!this.state.deadline) {
+            return this.props.createMessage({
+                deadline: 'You must specify a deadline'
+            });
+        }
+
+        if (!this.state.sow_number) {
+            return this.props.createMessage({
+                sow_number: 'You must specify a Scope of Work #'
+            });
+        }
 
         const newProject = {
             client: this.state.client,
@@ -93,32 +141,37 @@ class CreateProject extends Component {
         this.props.createProject(newProject);
 
         this.setState({
-            client: "",
-            project_type: "",
-            title: "",
-            author: "",
-            word_count: "",
-            project_fee: "",
-            deadline: "",
-            sow_number: ""
-        })
+            client: '',
+            project_type: '',
+            title: '',
+            author: '',
+            word_count: '',
+            project_fee: '',
+            deadline: '',
+            sow_number: ''
+        });
     };
 
     render() {
-
         return (
             <Fragment>
                 <Banner title="Add Project" />
 
                 <div style={styles.container}>
                     <Button style={styles.button}>
-                        <Link style={styles.linkButton} to="/dashboard">Back to Dashboard</Link>
+                        <Link style={styles.linkButton} to="/dashboard">
+                            Back to Dashboard
+                        </Link>
                     </Button>
                     <form onSubmit={this.handleSaveProject}>
-
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="client" style={styles.customInputLabel}>Client name</label>
+                                <label
+                                    htmlFor="client"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Client name
+                                </label>
                                 <input
                                     style={styles.customInput}
                                     placeholder="Client name"
@@ -129,8 +182,12 @@ class CreateProject extends Component {
                             </div>
 
                             <div>
-
-                                <label htmlFor="project_type" style={styles.customInputLabel}>Project type</label>
+                                <label
+                                    htmlFor="project_type"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Project type
+                                </label>
 
                                 <input
                                     style={styles.customInput}
@@ -144,8 +201,12 @@ class CreateProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-
-                                <label htmlFor="title" style={styles.customInputLabel}>Project title</label>
+                                <label
+                                    htmlFor="title"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Project title
+                                </label>
 
                                 <input
                                     style={styles.customInput}
@@ -156,8 +217,12 @@ class CreateProject extends Component {
                                 />
                             </div>
                             <div>
-
-                                <label htmlFor="author" style={styles.customInputLabel}>Author name</label>
+                                <label
+                                    htmlFor="author"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Author name
+                                </label>
 
                                 <input
                                     style={styles.customInput}
@@ -171,8 +236,12 @@ class CreateProject extends Component {
 
                         <div style={styles.inputContainer}>
                             <div>
-
-                                <label htmlFor="word_count" style={styles.customInputLabel}>Word count</label>
+                                <label
+                                    htmlFor="word_count"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Word count
+                                </label>
 
                                 <input
                                     style={styles.customInput}
@@ -181,9 +250,14 @@ class CreateProject extends Component {
                                     value={this.state.word_count}
                                     onChange={this.onChange}
                                 />
-                            </div><div>
-
-                                <label htmlFor="project_fee" style={styles.customInputLabel}>Project fee</label>
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="project_fee"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Project fee
+                                </label>
 
                                 <input
                                     style={styles.customInput}
@@ -196,21 +270,27 @@ class CreateProject extends Component {
                         </div>
 
                         <div style={styles.inputContainer}>
-
                             <div>
-
-                                <label htmlFor="deadline" style={styles.customInputLabel}>Deadline</label>
+                                <label
+                                    htmlFor="deadline"
+                                    style={styles.customInputLabel}
+                                >
+                                    * Deadline
+                                </label>
                                 <DatePicker
                                     placeholderText="Click to select a date"
                                     className="select-css-date"
                                     selected={this.state.deadline}
                                     onChange={this.handleDeadlineChange}
                                 />
-
                             </div>
                             <div>
-
-                                <label htmlFor="sow_number" style={styles.customInputLabel}>SoW number</label>
+                                <label
+                                    htmlFor="sow_number"
+                                    style={styles.customInputLabel}
+                                >
+                                    * SoW number
+                                </label>
 
                                 <input
                                     style={styles.customInput}
@@ -222,10 +302,7 @@ class CreateProject extends Component {
                             </div>
                         </div>
 
-                        <Button
-                            type="submit"
-                            style={styles.button}
-                        >
+                        <Button type="submit" style={styles.button}>
                             Add Project
                         </Button>
                     </form>
@@ -234,7 +311,6 @@ class CreateProject extends Component {
         );
     }
 }
-
 
 CreateProject.propTypes = {
     auth: PropTypes.object.isRequired,
@@ -249,5 +325,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { createProject }
+    { createProject, createMessage }
 )(withRouter(CreateProject));

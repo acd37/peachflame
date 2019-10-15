@@ -1,6 +1,6 @@
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOADING = 'LOADING';
-export const REMOVE_LOADING = 'REMOVE_LOADING'
+export const REMOVE_LOADING = 'REMOVE_LOADING';
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_PROJECTS = 'SET_PROJECTS';
@@ -10,3 +10,13 @@ export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 export const SET_PROJECT = 'SET_PROJECT';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const SET_PROJECT_DATA = 'SET_PROJECT_DATA';
+
+export const CREATE_MESSAGE = 'CREATE_MESSAGE';
+export const USER_LOADING = 'USER_LOADING';
+export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';

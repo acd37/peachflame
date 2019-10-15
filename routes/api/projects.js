@@ -25,7 +25,6 @@ router.post(
     '/create',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-
         const newProject = new Project({
             user: req.user.id,
             client: req.body.client,
@@ -41,11 +40,11 @@ router.post(
             billed_year: req.body.billed_year,
             hours: req.body.hours,
             invoice_number: req.body.invoice_number,
-            sow_number: req.body.sow_number,
+            sow_number: req.body.sow_number
         });
 
         newProject.save().then(project => {
-            res.status(200).json(project)
+            res.status(200).json(project);
         });
     }
 );
@@ -90,12 +89,14 @@ router.post(
                 res.json(project);
             })
             .catch(err => console.log(err));
-    });
+    }
+);
 
 // @route   GET api/projects
 // @desc    Get projects by logged in user
 // @access  Private
-router.get('/',
+router.get(
+    '/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Project.find({
@@ -103,21 +104,30 @@ router.get('/',
         })
             .sort({ date: -1 })
             .then(projects => res.json(projects))
-            .catch(err => res.status(404).json({ noprojects: 'No projects found for this user.' }));
-    });
-
+            .catch(err =>
+                res
+                    .status(404)
+                    .json({ noprojects: 'No projects found for this user.' })
+            );
+    }
+);
 
 // @route   GET api/projects/:id
 // @desc    Get project by id
 // @access  Private
-router.get('/project/:id',
+router.get(
+    '/project/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         Project.findById(req.params.id)
             .then(project => res.json(project))
-            .catch(err => res.status(404).json({ noproject: 'No project found with that ID.' }));
-    });
-
+            .catch(err =>
+                res
+                    .status(404)
+                    .json({ noproject: 'No project found with that ID.' })
+            );
+    }
+);
 
 // @route   DELETE api/projects/:id
 // @desc    Delete project by id
@@ -138,10 +148,17 @@ router.delete(
                     }
 
                     // else delete
-                    project.remove().then(() => res.json({ success: true, projectdeleted: "Project was successfully removed." }));
+                    project.remove().then(() =>
+                        res.json({
+                            success: true,
+                            projectdeleted: 'Project was successfully removed.'
+                        })
+                    );
                 })
                 .catch(err =>
-                    res.status(404).json({ projectnotfound: 'No project found.' })
+                    res
+                        .status(404)
+                        .json({ projectnotfound: 'No project found.' })
                 );
         });
     }
@@ -150,93 +167,88 @@ router.delete(
 // @route   GET api/projects/data
 // @desc    Get project financial data
 // @access  Private
-router.get('/data',
+router.get(
+    '/data',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
+        console.log(req.body);
         Project.find({
             user: req.user.id
         })
             .then(projects => {
-
                 let data = {
-                    "jan": 0,
-                    "feb": 0,
-                    "mar": 0,
-                    "apr": 0,
-                    "may": 0,
-                    "jun": 0,
-                    "jul": 0,
-                    "aug": 0,
-                    "sep": 0,
-                    "oct": 0,
-                    "nov": 0,
-                    "dec": 0,
+                    jan: 0,
+                    feb: 0,
+                    mar: 0,
+                    apr: 0,
+                    may: 0,
+                    jun: 0,
+                    jul: 0,
+                    aug: 0,
+                    sep: 0,
+                    oct: 0,
+                    nov: 0,
+                    dec: 0
                 };
 
-                for (var i = 0; i < projects.length; i++) {
-                    if ((moment(projects[i].deadline).year() == 2019) && (projects[i].status === "delivered")) {
+                const currentYear = new Date().getFullYear();
 
+                for (var i = 0; i < projects.length; i++) {
+                    if (
+                        moment(projects[i].deadline).year() == currentYear &&
+                        projects[i].status === 'delivered'
+                    ) {
                         switch (projects[i].billed_month) {
-                            case "1":
+                            case '1':
                                 data.jan += projects[i].project_fee;
-                                console.log(data.jan)
+
                                 break;
-                            case "2":
+                            case '2':
                                 data.feb += projects[i].project_fee;
-                                console.log(data.feb)
                                 break;
-                            case "3":
+                            case '3':
                                 data.mar += projects[i].project_fee;
-                                console.log(data.mar)
                                 break;
-                            case "4":
+                            case '4':
                                 data.apr += projects[i].project_fee;
-                                console.log(data.apr)
                                 break;
-                            case "5":
+                            case '5':
                                 data.may += projects[i].project_fee;
-                                console.log(data.may)
                                 break;
-                            case "6":
+                            case '6':
                                 data.jun += projects[i].project_fee;
-                                console.log(data.jun)
                                 break;
-                            case "7":
+                            case '7':
                                 data.jul += projects[i].project_fee;
-                                console.log(data.jul)
                                 break;
-                            case "8":
+                            case '8':
                                 data.aug += projects[i].project_fee;
-                                console.log(data.aug)
                                 break;
-                            case "9":
+                            case '9':
                                 data.sep += projects[i].project_fee;
-                                console.log(data.sep)
                                 break;
-                            case "10":
+                            case '10':
                                 data.oct += projects[i].project_fee;
-                                console.log(data.oct)
                                 break;
-                            case "11":
+                            case '11':
                                 data.nov += projects[i].project_fee;
-                                console.log(data.nov)
                                 break;
-                            case "12":
+                            case '12':
                                 data.dec += projects[i].project_fee;
-                                console.log(data.dec)
                                 break;
                         }
-
                     }
                 }
 
-
-                res.json(data)
+                res.json(data);
             })
             .catch(err => {
-                console.log(err)
-                res.status(404).json({ noprojects: 'No projects found for this user.' })
+                console.log(err);
+                res.status(404).json({
+                    noprojects: 'No projects found for this user.'
+                });
             });
-    });
+    }
+);
 
 module.exports = router;

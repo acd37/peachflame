@@ -1,9 +1,15 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwtDecode from 'jwt-decode';
+import { returnErrors } from './messageActions';
 
-import { GET_ERRORS, SET_CURRENT_USER, LOADING, SET_PROJECTS, UPDATE_PASSWORD } from './types';
-
+import {
+    GET_ERRORS,
+    SET_CURRENT_USER,
+    LOADING,
+    LOGIN_FAIL,
+    UPDATE_PASSWORD
+} from './types';
 
 // Register
 export const registerUser = (userData, history) => dispatch => {
@@ -38,14 +44,13 @@ export const loginUser = userData => dispatch => {
             // set current user
             dispatch(setCurrentUser(decoded));
         })
-        .catch(err =>
+        .catch(err => {
+            dispatch(returnErrors(err.response));
             dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
-            })
-        );
+                type: LOGIN_FAIL
+            });
+        });
 };
-
 
 // changes user password
 export const updatePassword = data => dispatch => {
@@ -55,17 +60,12 @@ export const updatePassword = data => dispatch => {
             dispatch({
                 type: UPDATE_PASSWORD,
                 payload: res.data.password
-            })
+            });
         })
         .catch(err => {
             console.log(err);
-        }
-
-        );
+        });
 };
-
-
-
 
 // Set logged in user
 export const setCurrentUser = decoded => {
