@@ -109,16 +109,26 @@ class Dashboard extends Component {
                     <Data />
                     <div style={{ maxWidth: '100%', margin: 30 }}>
                         <MaterialTable
+                            style={{
+                                borderRadius: 10
+                            }}
                             options={{
-                                pageSize: 10
+                                pageSize: 5,
+                                headerStyle: {
+                                    backgroundColor: '#eee',
+                                    textTransform: 'uppercase',
+                                    fontSize: '0.7rem',
+                                    color: 'rgba(0,0,0,0.5)'
+                                },
+                                searchFieldStyle: {
+                                    width: 400,
+                                    padding: 3
+                                }
                             }}
                             columns={[
                                 { title: 'Title', field: 'title' },
                                 { title: 'Client', field: 'client' },
-                                {
-                                    title: 'Author',
-                                    field: 'author'
-                                },
+                                { title: 'Author', field: 'author' },
                                 {
                                     title: 'Fee',
                                     field: 'project_fee',
