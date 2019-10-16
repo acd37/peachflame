@@ -126,7 +126,8 @@ class Dashboard extends Component {
                                 },
                                 {
                                     title: 'Fee',
-                                    field: 'project_fee'
+                                    field: 'project_fee',
+                                    type: 'currency'
                                 },
                                 {
                                     title: 'Deadline',
@@ -179,9 +180,61 @@ class Dashboard extends Component {
                                 client: project.client,
                                 author: project.author,
                                 project_fee: project.project_fee,
-                                deadline: moment(project.deadline).format(
-                                    'MMM DD YYYY'
-                                ),
+                                deadline: (function() {
+                                    if (
+                                        moment(project.deadline).isBefore(
+                                            moment()
+                                        )
+                                    ) {
+                                        return moment(project.deadline).format(
+                                            'MM-DD-YY'
+                                        );
+                                    }
+
+                                    if (
+                                        moment(project.deadline).isAfter(
+                                            moment()
+                                        ) &&
+                                        project.status === 'delivered'
+                                    ) {
+                                        return moment(project.deadline).format(
+                                            'MM-DD-YY'
+                                        );
+                                    }
+
+                                    if (
+                                        moment(project.deadline).isAfter(
+                                            moment()
+                                        ) &&
+                                        project.status !== 'delivered'
+                                    ) {
+                                        return (
+                                            <div>
+                                                <div
+                                                    style={{ color: '#66BB6A' }}
+                                                >
+                                                    {moment(project.deadline)
+                                                        .add(1, 'day')
+                                                        .fromNow()}
+                                                </div>
+
+                                                <div>
+                                                    {' '}
+                                                    <div
+                                                        style={{
+                                                            color:
+                                                                'rgba(0,0,0,0.4'
+                                                        }}
+                                                    >
+                                                        {moment(
+                                                            project.deadline
+                                                        ).format('(MM-DD-YY)')}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                })(),
                                 status: (function() {
                                     if (project.status === 'queued')
                                         return 'Queued';
