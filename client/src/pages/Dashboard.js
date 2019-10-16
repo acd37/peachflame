@@ -3,7 +3,6 @@ import { getUserProjects, deleteProject } from '../actions/projectActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { LinearProgress, Button } from '@material-ui/core/';
-import Project from '../components/Project';
 import Banner from '../components/Banner';
 import { Link } from 'react-router-dom';
 import Data from '../components/dashboard/Data';
@@ -48,10 +47,6 @@ const styles = {
         color: '#5e5e5e',
         fontWeight: 300,
         fontSize: '1.3rem'
-    },
-    linkButton: {
-        color: '#fff',
-        textDecoration: 'none'
     },
     noProjects: {
         textAlign: 'center',
