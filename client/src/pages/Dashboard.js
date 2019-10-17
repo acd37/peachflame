@@ -126,7 +126,21 @@ class Dashboard extends Component {
                                 }
                             }}
                             columns={[
-                                { title: 'Title', field: 'title' },
+                                {
+                                    title: 'Title',
+                                    field: 'title',
+                                    render: rowData => (
+                                        <Link
+                                            style={{
+                                                textDecoration: 'none',
+                                                color: '#fc7967'
+                                            }}
+                                            to={`/dashboard/update/${rowData._id}`}
+                                        >
+                                            {rowData.title}
+                                        </Link>
+                                    )
+                                },
                                 { title: 'Client', field: 'client' },
                                 { title: 'Author', field: 'author' },
                                 {
@@ -169,19 +183,7 @@ class Dashboard extends Component {
                                 }
                             ]}
                             data={projects.map(project => ({
-                                title: (function() {
-                                    return (
-                                        <Link
-                                            style={{
-                                                textDecoration: 'none',
-                                                color: '#fc7967'
-                                            }}
-                                            to={`/dashboard/update/${project._id}`}
-                                        >
-                                            {project.title}
-                                        </Link>
-                                    );
-                                })(),
+                                title: project.title,
                                 client: project.client,
                                 author: project.author,
                                 project_fee: project.project_fee,
