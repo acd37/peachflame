@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Typography } from '@material-ui/core';
-import Banner from '../components/Banner';
+import Banner from '../components/common/Banner';
 import kelsey from '../images/kelsey.jpg';
 
 const styles = {
@@ -8,8 +7,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-
+        alignItems: 'center'
     },
     card: {
         border: 'none',
@@ -27,7 +25,7 @@ const styles = {
         margin: '30px auto',
         borderRadius: '0.375rem',
         boxShadow: '0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1)'
-    },
+    }
 };
 
 class Editor extends Component {
@@ -45,24 +43,16 @@ class Editor extends Component {
                         />
                         <p>
                             Kelsey has more than five years of experience
-                                working with writers of all skill levels, both in
-                                fiction and non-fiction fields. She's drawn to
-                                speculative fiction and #OwnVoices stories, but she
-                                has also edited historical and contemporary romance,
-                                academic papers, memoir, young adult fiction, and
-                                numerous other genres.
-                            </p>
-
+                            working with writers of all skill levels, both in
+                            fiction and non-fiction fields. She's drawn to
+                            speculative fiction and #OwnVoices stories, but she
+                            has also edited historical and contemporary romance,
+                            academic papers, memoir, young adult fiction, and
+                            numerous other genres.
+                        </p>
                     </div>
-
                 </div>
-
-
-
-            </Fragment >
-
-
-
+            </Fragment>
         );
     }
 }

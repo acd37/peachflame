@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { getUserProjects, deleteProject } from '../actions/projectActions';
+import { getUserProjects, deleteProject } from '../../actions/projectActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { LinearProgress, Button } from '@material-ui/core/';
-import Banner from '../components/Banner';
+import { LinearProgress } from '@material-ui/core/';
+import Banner from '../common/Banner';
 import { Link } from 'react-router-dom';
-import Data from '../components/dashboard/Data';
+import Data from '../data/Data';
 import MaterialTable from 'material-table';
 import moment from 'moment';
 
@@ -77,7 +77,7 @@ class Dashboard extends Component {
             content = (
                 <div style={styles.loadingWrapper}>
                     <img
-                        src={require('../images/peachflame.png')}
+                        src={require('../../images/peachflame.png')}
                         style={styles.logo}
                         alt="cs logo"
                     />

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 const styles = {
     dataCard: {
@@ -15,20 +15,16 @@ const styles = {
         boxShadow: '0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1)',
         borderRadius: '.375rem',
         backgroundColor: '#fc7967',
-        color: "#fff"
+        color: '#fff'
     }
-
 };
 
 class DataCard extends Component {
-
-
-
     render() {
         return (
             <div style={styles.dataCard}>
-                {this.props.month} <br />
-                ${this.props.dataValue.toLocaleString(2)}
+                {this.props.month} <br />$
+                {this.props.dataValue.toLocaleString(2)}
             </div>
         );
     }

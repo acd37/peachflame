@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-import Banner from '../components/Banner';
+import Banner from '../common/Banner';
 import green from '@material-ui/core/colors/green';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
-    TextField,
     FormControl,
     FormControlLabel,
     Typography,
@@ -57,12 +56,12 @@ const styles = {
         color: '#999'
     },
     button: {
-        backgroundColor: "#fc7967",
+        backgroundColor: '#fc7967',
         marginTop: 20,
-        color: "#fff",
+        color: '#fff',
         fontWeight: 300,
         letterSpacing: 1.2,
-        padding: "5px 30px"
+        padding: '5px 30px'
     }
 };
 
@@ -97,8 +96,12 @@ class Quote extends Component {
             developmental_edit: this.state.checkedDevelopmental
                 ? 'Developmental Edit: yes'
                 : 'Developmental Edit: no',
-            copy_edit: this.state.checkedCopy ? 'Copy Edit: yes' : 'Copy Edit: no',
-            line_edit: this.state.checkedLine ? 'Line Edit: yes' : 'Line Edit: no',
+            copy_edit: this.state.checkedCopy
+                ? 'Copy Edit: yes'
+                : 'Copy Edit: no',
+            line_edit: this.state.checkedLine
+                ? 'Line Edit: yes'
+                : 'Line Edit: no',
             details: this.state.details
         };
 
@@ -109,7 +112,7 @@ class Quote extends Component {
         axios
             .post('/api/email/send', emailData)
             .then(res => {
-                console.log(res)
+                console.log(res);
                 this.setState({
                     messages: res.data.success,
                     firstName: '',
@@ -125,7 +128,7 @@ class Quote extends Component {
                 });
             })
             .catch(err => {
-                console.log('Error sending email: ', err)
+                console.log('Error sending email: ', err);
             });
     };
 
@@ -137,7 +140,12 @@ class Quote extends Component {
                 <form style={styles.form}>
                     <div style={styles.inputContainer}>
                         <div>
-                            <label htmlFor="firstName" style={styles.customInputLabel}>First Name</label>
+                            <label
+                                htmlFor="firstName"
+                                style={styles.customInputLabel}
+                            >
+                                First Name
+                            </label>
                             <input
                                 style={styles.customInput}
                                 placeholder="First name"
@@ -147,7 +155,12 @@ class Quote extends Component {
                             />
                         </div>
                         <div>
-                            <label htmlFor="lastName" style={styles.customInputLabel}>Last Name</label>
+                            <label
+                                htmlFor="lastName"
+                                style={styles.customInputLabel}
+                            >
+                                Last Name
+                            </label>
                             <input
                                 style={styles.customInput}
                                 placeholder="Last name"
@@ -159,7 +172,12 @@ class Quote extends Component {
                     </div>
                     <div style={styles.inputContainer}>
                         <div>
-                            <label htmlFor="email" style={styles.customInputLabel}>Email</label>
+                            <label
+                                htmlFor="email"
+                                style={styles.customInputLabel}
+                            >
+                                Email
+                            </label>
                             <input
                                 style={styles.customInput}
                                 placeholder="Email"
@@ -169,7 +187,12 @@ class Quote extends Component {
                             />
                         </div>
                         <div>
-                            <label htmlFor="wordCount" style={styles.customInputLabel}>Word count</label>
+                            <label
+                                htmlFor="wordCount"
+                                style={styles.customInputLabel}
+                            >
+                                Word count
+                            </label>
                             <input
                                 style={styles.customInput}
                                 placeholder="Word count"
@@ -180,20 +203,26 @@ class Quote extends Component {
                         </div>
                     </div>
 
-
-
                     <Fragment>
-                        <FormControl component="fieldset" style={styles.formControl}>
+                        <FormControl
+                            component="fieldset"
+                            style={styles.formControl}
+                        >
                             <Typography variant="subheading">
-                                What kind of edit would you like? You may select more than one
-                                if you require all stages of editing for your manuscript.
-              </Typography>
+                                What kind of edit would you like? You may select
+                                more than one if you require all stages of
+                                editing for your manuscript.
+                            </Typography>
                             <FormGroup>
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            checked={this.state.checkedDevelopmental}
-                                            onChange={this.handleCheckedBox('checkedDevelopmental')}
+                                            checked={
+                                                this.state.checkedDevelopmental
+                                            }
+                                            onChange={this.handleCheckedBox(
+                                                'checkedDevelopmental'
+                                            )}
                                             value="checkedDevelopmental"
                                             color="primary"
                                         />
@@ -204,7 +233,9 @@ class Quote extends Component {
                                     control={
                                         <Checkbox
                                             checked={this.state.checkedCopy}
-                                            onChange={this.handleCheckedBox('checkedCopy')}
+                                            onChange={this.handleCheckedBox(
+                                                'checkedCopy'
+                                            )}
                                             value="checkedCopy"
                                             color="primary"
                                         />
@@ -216,7 +247,9 @@ class Quote extends Component {
                                     control={
                                         <Checkbox
                                             checked={this.state.checkedLine}
-                                            onChange={this.handleCheckedBox('checkedLine')}
+                                            onChange={this.handleCheckedBox(
+                                                'checkedLine'
+                                            )}
                                             value="checkedLine"
                                             color="primary"
                                         />
@@ -227,11 +260,15 @@ class Quote extends Component {
                         </FormControl>
                     </Fragment>
 
-
                     <Fragment>
                         <div style={styles.inputContainer}>
                             <div>
-                                <label htmlFor="details" style={styles.customInputLabel}>Tell us a little more about your project.</label>
+                                <label
+                                    htmlFor="details"
+                                    style={styles.customInputLabel}
+                                >
+                                    Tell us a little more about your project.
+                                </label>
                                 <textarea
                                     rows="8"
                                     style={styles.customInput}
@@ -243,21 +280,28 @@ class Quote extends Component {
                             </div>
                         </div>
 
-                        <FormControl component="fieldset" style={styles.formControl}>
-                            {
-                                this.state.messages &&
-                                <p className="success-message">{this.state.messages}</p>
-                            }
+                        <FormControl
+                            component="fieldset"
+                            style={styles.formControl}
+                        >
+                            {this.state.messages && (
+                                <p className="success-message">
+                                    {this.state.messages}
+                                </p>
+                            )}
                             <Button
                                 style={styles.button}
                                 disabled={this.state.loading}
                                 onClick={this.handleFormSubmit.bind(this)}
                             >
                                 {this.state.loading && (
-                                    <CircularProgress style={styles.buttonLoading} size={24} />
+                                    <CircularProgress
+                                        style={styles.buttonLoading}
+                                        size={24}
+                                    />
                                 )}
                                 Submit
-              </Button>
+                            </Button>
                         </FormControl>
                     </Fragment>
                 </form>

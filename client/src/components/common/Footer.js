@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import PrivacyPolicy from '../PrivacyPolicy';
+import PrivacyPolicy from './PrivacyPolicy';
 
 const styles = {
     grid: {
@@ -66,14 +66,18 @@ class Footer extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
-    showYears = () => { };
+    showYears = () => {};
 
     render() {
         return (
             <Fragment>
                 <div style={styles.grid}>
                     <div style={styles.logoContainer}>
-                        <img style={styles.img} src={require('../../images/peachflame.png')} alt="iod logo" />
+                        <img
+                            style={styles.img}
+                            src={require('../../images/peachflame.png')}
+                            alt="iod logo"
+                        />
 
                         <p style={styles.text}>
                             &copy; PeachFlame, {this.showCurrentYear()} -{' '}
@@ -97,11 +101,6 @@ class Footer extends Component {
                                         />
                                     </a>
                                 </li>
-                                {/* <li>
-                  <a rel="noopener noreferrer" target="_blank" style={styles.link} href="https://twitter.com/insideoutdev">
-                    <img src={twitter} style={styles.social_media} alt="social media icon" />
-                  </a>
-                </li> */}
                                 <li>
                                     <a
                                         rel="noopener noreferrer"

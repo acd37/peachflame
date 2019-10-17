@@ -1,15 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import Banner from '../components/Banner';
-import {
-    TextField,
-    Button,
-    InputAdornment,
-    IconButton,
-    Input,
-    InputLabel,
-    FormControl,
-    CircularProgress
-} from '@material-ui/core';
+import Banner from '../components/common/Banner';
+import { Button, InputAdornment, IconButton } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { connect } from 'react-redux';

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Button } from '@material-ui/core';
-import Banner from '../components/Banner';
+import Banner from '../components/common/Banner';
 import { createProject } from '../actions/projectActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

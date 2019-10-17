@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { LinearProgress, Button } from '@material-ui/core/';
-import Banner from '../components/Banner';
+import { Button } from '@material-ui/core/';
+import Banner from '../components/common/Banner';
 import { updatePassword } from '../actions/authActions';
 
 const styles = {
@@ -19,7 +18,7 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     logo: {
         marginTop: 80,
@@ -40,7 +39,7 @@ const styles = {
         fontSize: '1.3rem'
     },
     linkButton: {
-        color: "#fff",
+        color: '#fff',
         textDecoration: 'none'
     },
     customInput: {
@@ -59,34 +58,31 @@ const styles = {
         color: '#999'
     },
     button: {
-        backgroundColor: "#fc7967",
+        backgroundColor: '#fc7967',
         marginTop: 20,
-        color: "#fff",
+        color: '#fff',
         fontWeight: 300,
         letterSpacing: 1.2,
-        padding: "5px 30px"
-    },
-
-}
+        padding: '5px 30px'
+    }
+};
 
 class Account extends Component {
-
     state = {
-        currentPass: "",
-        password: "",
-        password2: ""
-    }
-
+        currentPass: '',
+        password: '',
+        password2: ''
+    };
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
+        console.log(nextProps);
         if (nextProps.auth.passwordChanged.success) {
             this.setState({
-                currentPass: "",
-                password: "",
-                password2: "",
+                currentPass: '',
+                password: '',
+                password2: '',
                 success: nextProps.auth.passwordChanged.msg
-            })
+            });
         }
 
         if (nextProps.errors) {
@@ -102,25 +98,19 @@ class Account extends Component {
         });
     };
 
-    handleUpdatePassword = (e) => {
+    handleUpdatePassword = e => {
         e.preventDefault();
 
         const data = {
             currentPass: this.state.currentPass,
             password: this.state.password,
             password2: this.state.password2
-        }
+        };
 
         this.props.updatePassword(data);
-
-
-
-    }
+    };
 
     render() {
-
-
-
         return (
             <div>
                 <Banner title="Account" />
@@ -131,8 +121,12 @@ class Account extends Component {
                         autoComplete="off"
                         onSubmit={this.handleUpdatePassword}
                     >
-
-                        <label htmlFor="currentPass" style={styles.customInputLabel}>Current password</label>
+                        <label
+                            htmlFor="currentPass"
+                            style={styles.customInputLabel}
+                        >
+                            Current password
+                        </label>
 
                         <input
                             type="password"
@@ -143,9 +137,13 @@ class Account extends Component {
                             onChange={this.handleChange('currentPass')}
                         />
 
-                        <label htmlFor="password" style={styles.customInputLabel}>Password</label>
+                        <label
+                            htmlFor="password"
+                            style={styles.customInputLabel}
+                        >
+                            Password
+                        </label>
                         <div style={styles.passwordWrapper}>
-
                             <input
                                 type="password"
                                 style={styles.customInput}
@@ -154,12 +152,15 @@ class Account extends Component {
                                 value={this.state.password}
                                 onChange={this.handleChange('password')}
                             />
-
                         </div>
 
-                        <label htmlFor="password2" style={styles.customInputLabel}>Re-type password</label>
+                        <label
+                            htmlFor="password2"
+                            style={styles.customInputLabel}
+                        >
+                            Re-type password
+                        </label>
                         <div style={styles.passwordWrapper}>
-
                             <input
                                 type="password"
                                 style={styles.customInput}
@@ -168,28 +169,20 @@ class Account extends Component {
                                 value={this.state.password2}
                                 onChange={this.handleChange('password2')}
                             />
-
                         </div>
 
-
-                        <Button
-                            type="submit"
-                            style={styles.button}
-                        >
+                        <Button type="submit" style={styles.button}>
                             Update
-                                </Button>
-                        {
-                            this.state.success &&
-                            <p className="success-message">{this.state.success}</p>
-                        }
+                        </Button>
+                        {this.state.success && (
+                            <p className="success-message">
+                                {this.state.success}
+                            </p>
+                        )}
                     </form>
-
-
                 </div>
-
-
             </div>
-        )
+        );
     }
 }
 
@@ -198,7 +191,7 @@ Account.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
+    auth: state.auth
 });
 
 export default connect(
