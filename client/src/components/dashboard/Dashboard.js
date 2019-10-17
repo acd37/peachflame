@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { getUserProjects, deleteProject } from '../../actions/projectActions';
+import { getUserProjects } from '../../actions/projectActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { LinearProgress } from '@material-ui/core/';
 import Banner from '../common/Banner';
 import { Link } from 'react-router-dom';
 import Data from '../data/Data';
-import MaterialTable from 'material-table';
-import moment from 'moment';
+import Table from './Table';
 
 const styles = {
     peachAlert: {
@@ -59,16 +58,6 @@ class Dashboard extends Component {
         this.props.getUserProjects();
     }
 
-    handleDelete = project => {
-        const confirm = window.confirm(
-            'Are you sure you want to delete this project? This action cannot be undone.'
-        );
-
-        if (confirm) {
-            this.props.deleteProject(project._id);
-        }
-    };
-
     render() {
         const { loading, projects } = this.props.projects;
         let content;
@@ -107,180 +96,7 @@ class Dashboard extends Component {
                     )}
 
                     <Data />
-                    <div style={{ maxWidth: '100%', margin: 30 }}>
-                        <MaterialTable
-                            style={{
-                                borderRadius: 10
-                            }}
-                            options={{
-                                pageSize: 5,
-                                headerStyle: {
-                                    backgroundColor: '#eee',
-                                    textTransform: 'uppercase',
-                                    fontSize: '0.7rem',
-                                    color: 'rgba(0,0,0,0.5)'
-                                },
-                                searchFieldStyle: {
-                                    width: 400,
-                                    padding: 3
-                                }
-                            }}
-                            columns={[
-                                {
-                                    title: 'Title',
-                                    field: 'title',
-                                    render: rowData => (
-                                        <Link
-                                            style={{
-                                                textDecoration: 'none',
-                                                color: '#fc7967'
-                                            }}
-                                            to={`/dashboard/update/${rowData._id}`}
-                                        >
-                                            {rowData.title}
-                                        </Link>
-                                    )
-                                },
-                                { title: 'Client', field: 'client' },
-                                { title: 'Author', field: 'author' },
-                                {
-                                    title: 'Fee',
-                                    field: 'project_fee',
-                                    type: 'currency'
-                                },
-                                {
-                                    title: 'Deadline',
-                                    field: 'deadline',
-                                    type: 'date'
-                                },
-                                {
-                                    title: 'Status',
-                                    field: 'status',
-                                    cellStyle: rowData => ({
-                                        color: (function() {
-                                            if (rowData === 'Queued')
-                                                return '#ef5350';
-                                            if (rowData === 'Pending')
-                                                return '#FFA726';
-                                        })()
-                                    })
-                                },
-                                {
-                                    title: 'Payment Status',
-                                    field: 'payment_status',
-                                    cellStyle: rowData => ({
-                                        color: (function() {
-                                            if (rowData === 'Pending')
-                                                return '#ef5350';
-                                            if (rowData === 'Invoiced')
-                                                return '#FFA726';
-                                        })()
-                                    })
-                                },
-                                {
-                                    title: 'Actions',
-                                    field: 'actions'
-                                }
-                            ]}
-                            data={projects.map(project => ({
-                                title: project.title,
-                                client: project.client,
-                                author: project.author,
-                                project_fee: project.project_fee,
-                                deadline: (function() {
-                                    if (
-                                        moment(project.deadline).isBefore(
-                                            moment()
-                                        )
-                                    ) {
-                                        return moment(project.deadline).format(
-                                            'MM-DD-YY'
-                                        );
-                                    }
-
-                                    if (
-                                        moment(project.deadline).isAfter(
-                                            moment()
-                                        ) &&
-                                        project.status === 'delivered'
-                                    ) {
-                                        return moment(project.deadline).format(
-                                            'MM-DD-YY'
-                                        );
-                                    }
-
-                                    if (
-                                        moment(project.deadline).isAfter(
-                                            moment()
-                                        ) &&
-                                        project.status !== 'delivered'
-                                    ) {
-                                        return (
-                                            <div>
-                                                <div
-                                                    style={{ color: '#66BB6A' }}
-                                                >
-                                                    {moment(project.deadline)
-                                                        .add(1, 'day')
-                                                        .fromNow()}
-                                                </div>
-
-                                                <div>
-                                                    {' '}
-                                                    <div
-                                                        style={{
-                                                            color:
-                                                                'rgba(0,0,0,0.4'
-                                                        }}
-                                                    >
-                                                        {moment(
-                                                            project.deadline
-                                                        ).format('(MM-DD-YY)')}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-                                })(),
-                                status: (function() {
-                                    if (project.status === 'queued')
-                                        return 'Queued';
-                                    if (project.status === 'pending')
-                                        return 'Pending';
-                                    if (project.status === 'delivered')
-                                        return (
-                                            <i className="material-icons">
-                                                check
-                                            </i>
-                                        );
-                                })(),
-                                payment_status: (function() {
-                                    if (project.payment_status === 'pending')
-                                        return 'Pending';
-                                    if (project.payment_status === 'invoiced')
-                                        return 'Invoiced';
-                                    if (project.payment_status === 'paid')
-                                        return (
-                                            <i className="material-icons">
-                                                check
-                                            </i>
-                                        );
-                                })(),
-                                actions: (
-                                    <i
-                                        className="material-icons"
-                                        style={{ cursor: 'pointer' }}
-                                        onClick={() =>
-                                            this.handleDelete(project)
-                                        }
-                                    >
-                                        delete
-                                    </i>
-                                )
-                            }))}
-                            title="Projects"
-                        />
-                    </div>
+                    <Table projects={projects} />
 
                     {projects.length < 1 && (
                         <p style={styles.noProjects}>
@@ -311,5 +127,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getUserProjects, deleteProject }
+    { getUserProjects }
 )(Dashboard);
