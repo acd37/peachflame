@@ -42,12 +42,13 @@ class Table extends Component {
                             title: 'Title',
                             field: 'title',
                             render: rowData => (
+                                // console.log(rowData)
                                 <Link
                                     style={{
                                         textDecoration: 'none',
                                         color: '#fc7967'
                                     }}
-                                    to={`/dashboard/update/${rowData._id}`}
+                                    to={`/dashboard/update/${rowData.id}`}
                                 >
                                     {rowData.title}
                                 </Link>
@@ -92,6 +93,7 @@ class Table extends Component {
                         }
                     ]}
                     data={this.props.projects.map(project => ({
+                        id: project._id,
                         title: project.title,
                         client: project.client,
                         author: project.author,
