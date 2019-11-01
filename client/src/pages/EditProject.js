@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import moment from 'moment';
+import { createMessage } from '../actions/messageActions';
 
 const styles = {
     container: {
@@ -133,7 +134,7 @@ class EditProject extends Component {
             });
         }
 
-        if (!this.state.word_count) {
+        if (!this.state.word_count && this.state.word_count !== 0) {
             return this.props.createMessage({
                 word_count: 'You must specify a word count.'
             });
@@ -482,5 +483,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { updateProject, getProject }
+    { updateProject, getProject, createMessage }
 )(withRouter(EditProject));
