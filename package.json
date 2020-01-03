@@ -1,35 +1,35 @@
 {
-    "name": "peachflame2.0",
-    "version": "2.0.0",
-    "description": "Peachflame 2.0",
-    "main": "server.js",
-    "scripts": {
-        "client-install": "npm install --prefix client",
-        "start": "node server.js",
-        "server": "nodemon server.js",
-        "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\"",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-    },
-    "author": "acd37",
-    "license": "ISC",
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "body-parser": "^1.18.2",
-        "chalk": "^2.4.2",
-        "concurrently": "^3.5.1",
-        "dotenv": "^8.0.0",
-        "express": "^4.16.3",
-        "jsonwebtoken": "^8.2.0",
-        "moment": "^2.24.0",
-        "mongoose": "^5.0.12",
-        "morgan": "^1.9.1",
-        "nodemailer": "^6.2.1",
-        "passport": "^0.4.0",
-        "passport-jwt": "^4.0.0",
-        "validator": "^11.0.0"
-    },
-    "devDependencies": {
-        "nodemon": "^1.18.10"
-    }
+  "name": "peachflame2.0",
+  "version": "2.0.0",
+  "description": "Peachflame 2.0",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently --kill-others \"nodemon run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "acd37",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "chalk": "^2.4.2",
+    "concurrently": "^3.5.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.0.12",
+    "morgan": "^1.9.1",
+    "nodemailer": "^6.2.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^11.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
 }
