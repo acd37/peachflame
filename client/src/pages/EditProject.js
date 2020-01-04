@@ -16,18 +16,24 @@ const styles = {
   container: {
     padding: 30,
     margin: "0 auto",
-    width: 960,
     maxWidth: "90%"
   },
   inputContainer: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     flexWrap: "wrap"
+  },
+  subheading: {
+    marginBottom: 0,
+    marginTop: 50,
+    fontWeight: 700,
+    fontSize: "1.2rem"
   }
 };
 
 class EditProject extends Component {
   state = {
+    billed_month: "",
     client: "",
     project_type: "",
     title: "",
@@ -136,6 +142,60 @@ class EditProject extends Component {
         <div style={styles.container}>
           <BackButton link="/dashboard" label="Back to Dashboard" />
           <form onSubmit={this.handleSaveProject}>
+            <p style={styles.subheading}>Status</p>
+            <div style={styles.inputContainer}>
+              <div>
+                <InputLabel htmlFor="status" text="Editorial status" />
+                <select
+                  style={{
+                    fontSize: "0.9rem",
+                    color: "rgba(0,0,0,0.8)",
+                    marginRight: 20
+                  }}
+                  value={this.state.status && this.state.status}
+                  onChange={this.onChange}
+                  name="status"
+                  className="select-css"
+                >
+                  <option value="queued">Queued</option>
+                  <option value="pending">Pending</option>
+                  <option value="delivered">Delivered</option>
+                </select>
+              </div>
+              <div>
+                <InputLabel htmlFor="is_completed" text="Completion" />
+                <select
+                  style={{
+                    fontSize: "0.9rem",
+                    color: "rgba(0,0,0,0.8)",
+                    marginRight: 20
+                  }}
+                  value={this.state.is_completed && this.state.is_completed}
+                  onChange={this.onChange}
+                  name="is_completed"
+                  className="select-css"
+                >
+                  <option value="true">Complete</option>
+                  <option value="false">Incomplete</option>
+                </select>
+              </div>
+              <div>
+                <InputLabel htmlFor="payment_status" text="Payment" />
+                <select
+                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
+                  value={this.state.payment_status && this.state.payment_status}
+                  onChange={this.onChange}
+                  name="payment_status"
+                  className="select-css"
+                >
+                  <option value="pending">Pending</option>
+                  <option value="invoiced">Invoiced</option>
+                  <option value="paid">Paid</option>
+                </select>
+              </div>
+            </div>
+
+            <p style={styles.subheading}>Project Details</p>
             <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="client" text="* Client name" />
@@ -149,7 +209,11 @@ class EditProject extends Component {
               <div>
                 <InputLabel htmlFor="project_type" text="* Project type" />
                 <select
-                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
+                  style={{
+                    fontSize: "0.9rem",
+                    color: "rgba(0,0,0,0.8)",
+                    marginRight: 20
+                  }}
                   value={this.state.project_type && this.state.project_type}
                   onChange={this.onChange}
                   name="project_type"
@@ -162,9 +226,7 @@ class EditProject extends Component {
                   <option value="Other">Other</option>
                 </select>
               </div>
-            </div>
 
-            <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="title" text="* Project title" />
                 <CustomInput
@@ -183,9 +245,7 @@ class EditProject extends Component {
                   onChange={this.onChange}
                 />
               </div>
-            </div>
 
-            <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="word_count" text="Word count" />
                 <CustomInput
@@ -204,9 +264,7 @@ class EditProject extends Component {
                   onChange={this.onChange}
                 />
               </div>
-            </div>
 
-            <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="deadline" text="* Deadline" />
                 <CustomInput
@@ -227,12 +285,18 @@ class EditProject extends Component {
               </div>
             </div>
 
+            <p style={styles.subheading}>Billing</p>
+
             <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="billed_month" text="Billed month" />
 
                 <select
-                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
+                  style={{
+                    fontSize: "0.9rem",
+                    color: "rgba(0,0,0,0.8)",
+                    marginRight: 20
+                  }}
                   value={this.state.billed_month && this.state.billed_month}
                   onChange={this.onChange}
                   name="billed_month"
@@ -262,9 +326,7 @@ class EditProject extends Component {
                   onChange={this.onChange}
                 />
               </div>
-            </div>
 
-            <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="invoice_number" text="Invoice number" />
                 <CustomInput
@@ -273,50 +335,6 @@ class EditProject extends Component {
                   value={this.state.invoice_number}
                   onChange={this.onChange}
                 />
-              </div>
-              <div>
-                <InputLabel htmlFor="payment_status" text="Payment status" />
-                <select
-                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
-                  value={this.state.payment_status && this.state.payment_status}
-                  onChange={this.onChange}
-                  name="payment_status"
-                  className="select-css"
-                >
-                  <option value="pending">Pending</option>
-                  <option value="invoiced">Invoiced</option>
-                  <option value="paid">Paid</option>
-                </select>
-              </div>
-            </div>
-
-            <div style={styles.inputContainer}>
-              <div>
-                <InputLabel htmlFor="status" text="Status" />
-                <select
-                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
-                  value={this.state.status && this.state.status}
-                  onChange={this.onChange}
-                  name="status"
-                  className="select-css"
-                >
-                  <option value="queued">Queued</option>
-                  <option value="pending">Pending</option>
-                  <option value="delivered">Delivered</option>
-                </select>
-              </div>
-              <div>
-                <InputLabel htmlFor="is_completed" text="Completed" />
-                <select
-                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
-                  value={this.state.is_completed && this.state.is_completed}
-                  onChange={this.onChange}
-                  name="is_completed"
-                  className="select-css"
-                >
-                  <option value="true">Complete</option>
-                  <option value="false">Incomplete</option>
-                </select>
               </div>
             </div>
 

@@ -4,6 +4,7 @@ const styles = {
   customInput: {
     border: "none",
     marginTop: 20,
+    marginRight: 20,
     padding: 20,
     boxShadow: "0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1)",
     borderRadius: ".375rem",

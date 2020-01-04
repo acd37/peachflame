@@ -5,13 +5,14 @@ import { Link, withRouter } from "react-router-dom";
 
 const styles = {
   linkButton: {
-    color: "#fff",
+    color: "#fc7967",
     textDecoration: "none"
   },
   button: {
-    backgroundColor: "#fc7967",
+    backgroundColor: "#fff",
+    border: "2px solid #fc7967",
     marginTop: 20,
-    color: "#fff",
+    color: "#fc7967",
     fontWeight: 300,
     letterSpacing: 1.2,
     padding: "5px 30px"

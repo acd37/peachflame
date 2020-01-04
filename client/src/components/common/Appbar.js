@@ -134,21 +134,15 @@ class Appbar extends Component {
                   open={this.state.menuOpen}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>
-                    <Link style={styles.appBarButton} to="/dashboard">
-                      Dashboard
-                    </Link>
-                  </MenuItem>
-                  <MenuItem onClick={this.handleClose}>
-                    <Link style={styles.appBarButton} to="/dashboard/create">
-                      Create Project
-                    </Link>
-                  </MenuItem>
-                  <MenuItem onClick={this.handleClose}>
-                    <Link style={styles.appBarButton} to="/dashboard/account">
-                      Account
-                    </Link>
-                  </MenuItem>
+                  <Link style={styles.appBarButton} to="/dashboard">
+                    <MenuItem onClick={this.handleClose}>Dashboard</MenuItem>
+                  </Link>
+                  <Link style={styles.appBarButton} to="/dashboard/create">
+                    <MenuItem onClick={this.handleClose}>Add project</MenuItem>
+                  </Link>
+                  <Link style={styles.appBarButton} to="/dashboard/account">
+                    <MenuItem onClick={this.handleClose}>Account</MenuItem>
+                  </Link>
                 </Menu>
               </div>
             ) : (

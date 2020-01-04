@@ -5,7 +5,7 @@ const styles = {
     display: "block",
     marginTop: 20,
     marginBottom: -15,
-    fontSize: "0.7rem",
+    fontSize: "0.8rem",
     color: "#999"
   }
 };
