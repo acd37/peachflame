@@ -1,109 +1,106 @@
 .App {
-    background: #fff;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+  background: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
 }
 
 h1 {
-    font-size: 3em;
-    text-align: center;
-    font-weight: 300;
+  font-size: 3em;
+  text-align: center;
+  font-weight: 300;
 }
 
 h2 {
-    text-align: center;
-    font-weight: 300;
+  text-align: center;
+  font-weight: 300;
 }
 
 .project-link-style {
-    text-decoration: none;
-    color: #fc7967;
+  text-decoration: none;
+  color: #fc7967;
 }
 
-.error-message, .success-message {
-    color: #fc7967;
-    font-size: 0.8rem;
-    margin: 10px;
+.error-message,
+.success-message {
+  color: #fc7967;
+  font-size: 0.8rem;
+  margin: 10px;
 }
-
 
 .image_logo {
-    filter: #ccc; /* IE6-9 */
-    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-    filter: grayscale(1);
-    opacity: 0.5;
+  filter: #ccc; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  filter: grayscale(1);
+  opacity: 0.5;
 }
 
 #optimized_appbar {
-    position: absolute;
-    right: 5px;
+  position: absolute;
+  right: 5px;
 }
 
 .fa-icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* select css */
 .select-css {
-    appearance: none;
-    -moz-appearance: none;
-	-webkit-appearance: none;
-	display: block;
-	font-size: 0.8rem;
-	font-weight: 300;
-	padding: 1.5em 1.4em 1.5em .8em;
-	width: 440px;
-	max-width: 100%; 
-	margin-top: 20px;
-	border: none;
-	box-shadow: 0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1);
-	border-radius: .375rem;
-	background-color: #fff;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 1.5em 1.4em 1.5em 0.8em;
+  width: 440px;
+  max-width: 100%;
+  margin-top: 20px;
+  border: none;
+  box-shadow: 0 12px 15px rgba(0, 0, 0, 0.1), 0 17px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+  background-color: #fff;
 }
 
-.select-css-date{
-    appearance: none;
-    -moz-appearance: none;
-	-webkit-appearance: none;
-	display: block;
-	font-size: 0.8rem;
-	font-weight: 300;
-	padding: 1.5em 1.4em 1.5em .8em;
-	width: 410px;
-	max-width: 100%; 
-	margin-top: 20px;
-	border: none;
-	box-shadow: 0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1);
-	border-radius: .375rem;
-	background-color: #fff;
+.select-css-date {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 1.5em 1.4em 1.5em 0.8em;
+  width: 410px;
+  max-width: 100%;
+  margin-top: 20px;
+  border: none;
+  box-shadow: 0 12px 15px rgba(0, 0, 0, 0.1), 0 17px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+  background-color: #fff;
 }
 
 .select-css::-ms-expand {
-	display: none;
+  display: none;
 }
 /* end select css */
 
 @media screen and (min-width: 1050px) {
-    #optimized_appbar {
-        display: none;
-    }
+  #optimized_appbar {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 750px) {
-    #page_header {
-        font-size: 3em !important;
-    }
+  #page_header {
+    font-size: 3em !important;
+  }
 
-    #logo {
-        height: 40px !important;
-    }
+  #logo {
+    height: 40px !important;
+  }
 }
 
 @media screen and (max-width: 1050px) {
-    #appbar {
-        display: none;
-    }
+  .appbar {
+    display: none;
+  }
 }
-
-
-

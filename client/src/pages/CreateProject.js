@@ -1,18 +1,21 @@
-import React, { Component, Fragment } from "react";
-import { Button } from "@material-ui/core";
-import Banner from "../components/common/Banner";
+import React, { Component } from "react";
 import { createProject } from "../actions/projectActions";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import DatePicker from "react-datepicker";
 import { createMessage } from "../actions/messageActions";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+
+import Banner from "../components/common/Banner";
+import CustomButton from "../components/common/CustomButton";
+import CustomInput from "../components/common/CustomInput";
+import InputLabel from "../components/common/InputLabel";
+import BackButton from "../components/common/BackButton";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const styles = {
   container: {
-    padding: 30,
-    margin: "0 auto",
+    margin: "0 auto 100px auto",
     width: 960,
     maxWidth: "90%"
   },
@@ -20,35 +23,6 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     flexWrap: "wrap"
-  },
-  customInput: {
-    border: "none",
-    marginTop: 20,
-    padding: 20,
-    boxShadow: "0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1)",
-    borderRadius: ".375rem",
-    width: 400,
-    fontWeight: 300,
-    fontSize: "1rem"
-  },
-  customInputLabel: {
-    display: "block",
-    marginTop: 20,
-    marginBottom: -15,
-    fontSize: "0.7rem",
-    color: "#999"
-  },
-  linkButton: {
-    color: "#fff",
-    textDecoration: "none"
-  },
-  button: {
-    backgroundColor: "#fc7967",
-    marginTop: 20,
-    color: "#fff",
-    fontWeight: 300,
-    letterSpacing: 1.2,
-    padding: "5px 30px"
   }
 };
 
@@ -65,10 +39,6 @@ class CreateProject extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleChange = () => {
-    this.setState(state => ({ checked: !state.checked }));
-  };
-
   handleDeadlineChange = date => {
     this.setState({
       deadline: date
@@ -78,9 +48,16 @@ class CreateProject extends Component {
   handleSaveProject = e => {
     e.preventDefault();
 
+    // save validations
     if (!this.state.client) {
       return this.props.createMessage({
         client: "You must specify a client."
+      });
+    }
+
+    if (!this.state.project_type) {
+      return this.props.createMessage({
+        project_type: "You must specify a project type."
       });
     }
 
@@ -92,22 +69,18 @@ class CreateProject extends Component {
 
     if (!this.state.author) {
       return this.props.createMessage({
-        author: "You must specify a author."
+        author: "You must specify an author."
       });
     }
 
-    if (!this.state.project_type) {
-      return this.props.createMessage({
-        projectType: "You must specify a project type."
-      });
-    }
-
+    console.log("here");
     if (!this.state.deadline) {
       return this.props.createMessage({
         deadline: "You must specify a deadline"
       });
     }
 
+    // create and save project
     const newProject = {
       client: this.state.client,
       project_type: this.state.project_type,
@@ -119,39 +92,24 @@ class CreateProject extends Component {
       sow_number: this.state.sow_number
     };
 
-    this.props.createProject(newProject);
+    console.log(newProject);
 
-    this.setState({
-      client: "",
-      project_type: "",
-      title: "",
-      author: "",
-      word_count: "",
-      project_fee: "",
-      deadline: "",
-      sow_number: ""
-    });
+    this.props.createProject(newProject);
   };
 
   render() {
     return (
-      <Fragment>
+      <div>
         <Banner title="Add Project" />
 
         <div style={styles.container}>
-          <Button style={styles.button}>
-            <Link style={styles.linkButton} to="/dashboard">
-              Back to Dashboard
-            </Link>
-          </Button>
+          <BackButton link="/dashboard" label="Back to Dashboard" />
           <form onSubmit={this.handleSaveProject}>
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="client" style={styles.customInputLabel}>
-                  * Client name
-                </label>
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="client" text="* Client name" />
+                <CustomInput
+                  type="text"
                   name="client"
                   value={this.state.client}
                   onChange={this.onChange}
@@ -159,39 +117,42 @@ class CreateProject extends Component {
               </div>
 
               <div>
-                <label htmlFor="project_type" style={styles.customInputLabel}>
-                  * Project type
-                </label>
-
-                <input
-                  style={styles.customInput}
-                  name="project_type"
-                  value={this.state.project_type}
-                  onChange={this.onChange}
-                />
+                <InputLabel htmlFor="project_type" text="* Project type" />
+                <div style={styles.customInput}>
+                  <select
+                    style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
+                    value={this.state.project_type}
+                    onChange={this.onChange}
+                    name="project_type"
+                    className="select-css"
+                  >
+                    <option></option>
+                    <option value="Copy Edit">Copy Edit</option>
+                    <option value="Proofread">Proofread</option>
+                    <option value="Comprehensive Edit">
+                      Comprehensive Edit
+                    </option>
+                    <option value="Critique">Critique</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
               </div>
             </div>
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="title" style={styles.customInputLabel}>
-                  * Project title
-                </label>
-
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="title" text="* Project title" />
+                <CustomInput
+                  type="text"
                   name="title"
                   value={this.state.title}
                   onChange={this.onChange}
                 />
               </div>
               <div>
-                <label htmlFor="author" style={styles.customInputLabel}>
-                  * Author name
-                </label>
-
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="author" text="* Author name" />
+                <CustomInput
+                  type="text"
                   name="author"
                   value={this.state.author}
                   onChange={this.onChange}
@@ -201,24 +162,18 @@ class CreateProject extends Component {
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="word_count" style={styles.customInputLabel}>
-                  Word count
-                </label>
-
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="word_count" text="Word count" />
+                <CustomInput
+                  type="number"
                   name="word_count"
                   value={this.state.word_count}
                   onChange={this.onChange}
                 />
               </div>
               <div>
-                <label htmlFor="project_fee" style={styles.customInputLabel}>
-                  Project fee
-                </label>
-
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="project_fee" text="Project fee" />
+                <CustomInput
+                  type="number"
                   name="project_fee"
                   value={this.state.project_fee}
                   onChange={this.onChange}
@@ -228,36 +183,29 @@ class CreateProject extends Component {
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="deadline" style={styles.customInputLabel}>
-                  * Deadline
-                </label>
+                <InputLabel htmlFor="deadline" text="* Deadline" />
                 <DatePicker
                   placeholderText="Click to select a date"
                   className="select-css-date"
                   selected={this.state.deadline}
                   onChange={this.handleDeadlineChange}
+                  type="number"
                 />
               </div>
               <div>
-                <label htmlFor="sow_number" style={styles.customInputLabel}>
-                  SoW number
-                </label>
-
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="sow_number" text="SoW number" />
+                <CustomInput
+                  type="number"
                   name="sow_number"
                   value={this.state.sow_number}
                   onChange={this.onChange}
                 />
               </div>
             </div>
-
-            <Button type="submit" style={styles.button}>
-              Add Project
-            </Button>
+            <CustomButton type="submit" text="Submit" />
           </form>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

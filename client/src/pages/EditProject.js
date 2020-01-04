@@ -1,12 +1,16 @@
-import React, { Component, Fragment } from "react";
-import { Button } from "@material-ui/core";
+import React, { Component } from "react";
 import Banner from "../components/common/Banner";
 import { updateProject, getProject } from "../actions/projectActions";
+import { createMessage } from "../actions/messageActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import CustomButton from "../components/common/CustomButton";
+import CustomInput from "../components/common/CustomInput";
+import InputLabel from "../components/common/InputLabel";
+import BackButton from "../components/common/BackButton";
 import moment from "moment";
-import { createMessage } from "../actions/messageActions";
 
 const styles = {
   container: {
@@ -19,35 +23,6 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     flexWrap: "wrap"
-  },
-  customInput: {
-    border: "none",
-    marginTop: 20,
-    padding: 20,
-    boxShadow: "0 12px 15px rgba(0,0,0,0.1), 0 17px 50px rgba(0,0,0,0.1)",
-    borderRadius: ".375rem",
-    width: 400,
-    fontWeight: 300,
-    fontSize: "1rem"
-  },
-  customInputLabel: {
-    display: "block",
-    marginTop: 20,
-    marginBottom: -15,
-    fontSize: "0.7rem",
-    color: "#999"
-  },
-  linkButton: {
-    color: "#fff",
-    textDecoration: "none"
-  },
-  button: {
-    backgroundColor: "#fc7967",
-    marginTop: 20,
-    color: "#fff",
-    fontWeight: 300,
-    letterSpacing: 1.2,
-    padding: "5px 30px"
   }
 };
 
@@ -69,7 +44,6 @@ class EditProject extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps.project) {
       this.setState({
         id: nextProps.project._id,
@@ -88,8 +62,7 @@ class EditProject extends Component {
         is_completed: nextProps.project.is_completed,
         payment_status: nextProps.project.payment_status,
         status: nextProps.project.status,
-        hours: nextProps.project.hours,
-        is_completed: nextProps.project.is_completed
+        hours: nextProps.project.hours
       });
     }
   }
@@ -98,16 +71,18 @@ class EditProject extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleChange = () => {
-    this.setState(state => ({ checked: !state.checked }));
-  };
-
   handleSaveProject = e => {
     e.preventDefault();
 
     if (!this.state.client) {
       return this.props.createMessage({
         client: "You must specify a client."
+      });
+    }
+
+    if (!this.state.project_type) {
+      return this.props.createMessage({
+        project_type: "You must specify a project type."
       });
     }
 
@@ -120,12 +95,6 @@ class EditProject extends Component {
     if (!this.state.author) {
       return this.props.createMessage({
         author: "You must specify a author."
-      });
-    }
-
-    if (!this.state.project_type) {
-      return this.props.createMessage({
-        projectType: "You must specify a project type."
       });
     }
 
@@ -161,59 +130,54 @@ class EditProject extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div>
         <Banner title="Update Project" />
 
         <div style={styles.container}>
-          <Button style={styles.button}>
-            <Link style={styles.linkButton} to="/dashboard">
-              Back to Dashboard
-            </Link>
-          </Button>
+          <BackButton link="/dashboard" label="Back to Dashboard" />
           <form onSubmit={this.handleSaveProject}>
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="client" style={styles.customInputLabel}>
-                  * Client name
-                </label>
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="client" text="* Client name" />
+                <CustomInput
+                  type="text"
                   name="client"
                   value={this.state.client}
                   onChange={this.onChange}
                 />
               </div>
               <div>
-                <label htmlFor="project_type" style={styles.customInputLabel}>
-                  * Project type
-                </label>
-                <input
-                  style={styles.customInput}
-                  name="project_type"
-                  value={this.state.project_type}
+                <InputLabel htmlFor="project_type" text="* Project type" />
+                <select
+                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
+                  value={this.state.project_type && this.state.project_type}
                   onChange={this.onChange}
-                />
+                  name="project_type"
+                  className="select-css"
+                >
+                  <option value="Copy Edit">Copy Edit</option>
+                  <option value="Proofread">Proofread</option>
+                  <option value="Comprehensive Edit">Comprehensive Edit</option>
+                  <option value="Critique">Critique</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
             </div>
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="title" style={styles.customInputLabel}>
-                  * Project title
-                </label>
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="title" text="* Project title" />
+                <CustomInput
+                  type="text"
                   name="title"
                   value={this.state.title}
                   onChange={this.onChange}
                 />
               </div>
               <div>
-                <label htmlFor="author" style={styles.customInputLabel}>
-                  * Author name
-                </label>
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="author" text="* Author name" />
+                <CustomInput
+                  type="text"
                   name="author"
                   value={this.state.author}
                   onChange={this.onChange}
@@ -223,24 +187,18 @@ class EditProject extends Component {
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="word_count" style={styles.customInputLabel}>
-                  Word count
-                </label>
-                <input
+                <InputLabel htmlFor="word_count" text="Word count" />
+                <CustomInput
                   type="number"
-                  style={styles.customInput}
                   name="word_count"
                   value={this.state.word_count}
                   onChange={this.onChange}
                 />
               </div>
               <div>
-                <label htmlFor="project_fee" style={styles.customInputLabel}>
-                  Project fee
-                </label>
-                <input
+                <InputLabel htmlFor="project_fee" text="* Project fee" />
+                <CustomInput
                   type="number"
-                  style={styles.customInput}
                   name="project_fee"
                   value={this.state.project_fee}
                   onChange={this.onChange}
@@ -250,22 +208,18 @@ class EditProject extends Component {
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="deadline" style={styles.customInputLabel}>
-                  * Deadline
-                </label>
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="deadline" text="* Deadline" />
+                <CustomInput
+                  type="text"
                   name="deadline"
                   value={moment(this.state.deadline).format("MM-DD-YY")}
                   onChange={this.onChange}
                 />
               </div>
               <div>
-                <label htmlFor="sow_number" style={styles.customInputLabel}>
-                  SoW number
-                </label>
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="sow_number" text="SoW number" />
+                <CustomInput
+                  type="number"
                   name="sow_number"
                   value={this.state.sow_number}
                   onChange={this.onChange}
@@ -275,17 +229,16 @@ class EditProject extends Component {
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="billed_month" style={styles.customInputLabel}>
-                  Billed month
-                </label>
+                <InputLabel htmlFor="billed_month" text="Billed month" />
 
                 <select
+                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
                   value={this.state.billed_month && this.state.billed_month}
                   onChange={this.onChange}
                   name="billed_month"
                   className="select-css"
                 >
-                  <option value="0"></option>
+                  <option></option>
                   <option value="1">1 - Jan</option>
                   <option value="2">2 - Feb</option>
                   <option value="3">3 - Mar</option>
@@ -301,12 +254,9 @@ class EditProject extends Component {
                 </select>
               </div>
               <div>
-                <label htmlFor="hours" style={styles.customInputLabel}>
-                  Hours
-                </label>
-                <input
+                <InputLabel htmlFor="hours" text="Hours" />
+                <CustomInput
                   type="number"
-                  style={styles.customInput}
                   name="hours"
                   value={this.state.hours}
                   onChange={this.onChange}
@@ -316,54 +266,49 @@ class EditProject extends Component {
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="invoice_number" style={styles.customInputLabel}>
-                  Invoice number
-                </label>
-                <input
-                  style={styles.customInput}
+                <InputLabel htmlFor="invoice_number" text="Invoice number" />
+                <CustomInput
+                  type="number"
                   name="invoice_number"
                   value={this.state.invoice_number}
                   onChange={this.onChange}
                 />
               </div>
               <div>
-                <label htmlFor="payment_status" style={styles.customInputLabel}>
-                  Payment Status
-                </label>
+                <InputLabel htmlFor="payment_status" text="Payment status" />
                 <select
+                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
                   value={this.state.payment_status && this.state.payment_status}
                   onChange={this.onChange}
                   name="payment_status"
                   className="select-css"
                 >
-                  <option value="pending">pending</option>
-                  <option value="invoiced">invoiced</option>
-                  <option value="paid">paid</option>
+                  <option value="pending">Pending</option>
+                  <option value="invoiced">Invoiced</option>
+                  <option value="paid">Paid</option>
                 </select>
               </div>
             </div>
 
             <div style={styles.inputContainer}>
               <div>
-                <label htmlFor="status" style={styles.customInputLabel}>
-                  Status
-                </label>
+                <InputLabel htmlFor="status" text="Status" />
                 <select
+                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
                   value={this.state.status && this.state.status}
                   onChange={this.onChange}
                   name="status"
                   className="select-css"
                 >
-                  <option value="queued">queued</option>
-                  <option value="pending">pending</option>
-                  <option value="delivered">delivered</option>
+                  <option value="queued">Queued</option>
+                  <option value="pending">Pending</option>
+                  <option value="delivered">Delivered</option>
                 </select>
               </div>
               <div>
-                <label htmlFor="is_completed" style={styles.customInputLabel}>
-                  Completed
-                </label>
+                <InputLabel htmlFor="is_completed" text="Completed" />
                 <select
+                  style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
                   value={this.state.is_completed && this.state.is_completed}
                   onChange={this.onChange}
                   name="is_completed"
@@ -375,12 +320,10 @@ class EditProject extends Component {
               </div>
             </div>
 
-            <Button type="submit" style={styles.button}>
-              Update
-            </Button>
+            <CustomButton type="submit" text="Update" />
           </form>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
