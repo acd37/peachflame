@@ -16,13 +16,18 @@ import "react-datepicker/dist/react-datepicker.css";
 const styles = {
   container: {
     margin: "0 auto 100px auto",
-    width: 960,
     maxWidth: "90%"
   },
   inputContainer: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     flexWrap: "wrap"
+  },
+  subheading: {
+    marginBottom: 0,
+    marginTop: 50,
+    fontWeight: 700,
+    fontSize: "1.2rem"
   }
 };
 
@@ -105,6 +110,7 @@ class CreateProject extends Component {
         <div style={styles.container}>
           <BackButton link="/dashboard" label="Back to Dashboard" />
           <form onSubmit={this.handleSaveProject}>
+            <p style={styles.subheading}>Project Details</p>
             <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="client" text="* Client name" />
@@ -120,7 +126,11 @@ class CreateProject extends Component {
                 <InputLabel htmlFor="project_type" text="* Project type" />
                 <div style={styles.customInput}>
                   <select
-                    style={{ fontSize: "0.9rem", color: "rgba(0,0,0,0.8)" }}
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "rgba(0,0,0,0.8)",
+                      marginRight: 20
+                    }}
                     value={this.state.project_type}
                     onChange={this.onChange}
                     name="project_type"
@@ -137,9 +147,7 @@ class CreateProject extends Component {
                   </select>
                 </div>
               </div>
-            </div>
 
-            <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="title" text="* Project title" />
                 <CustomInput
@@ -158,9 +166,7 @@ class CreateProject extends Component {
                   onChange={this.onChange}
                 />
               </div>
-            </div>
 
-            <div style={styles.inputContainer}>
               <div>
                 <InputLabel htmlFor="word_count" text="Word count" />
                 <CustomInput
@@ -179,10 +185,8 @@ class CreateProject extends Component {
                   onChange={this.onChange}
                 />
               </div>
-            </div>
 
-            <div style={styles.inputContainer}>
-              <div>
+              <div style={{ marginRight: 20 }}>
                 <InputLabel htmlFor="deadline" text="* Deadline" />
                 <DatePicker
                   placeholderText="Click to select a date"
