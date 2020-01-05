@@ -69,7 +69,7 @@ class Dashboard extends Component {
       content = (
         <div style={styles.loadingWrapper}>
           <img
-            src={require("../../images/peachflame.png")}
+            src={require("../../images/peachflame.jpg")}
             style={styles.logo}
             alt="cs logo"
           />

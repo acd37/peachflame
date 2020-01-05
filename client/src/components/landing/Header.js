@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 
-
 const styles = {
   appHeader: {
     background: "linear-gradient(to left, #00c6ff, #0072ff)",
@@ -42,7 +41,12 @@ class Header extends Component {
           <h1 id="page_header" style={styles.header}>
             {" "}
             PeachFl
-            <img style={styles.cardImage} src={require('../../images/peachflame.png')} alt="logo" id="logo" />
+            <img
+              style={styles.cardImage}
+              src={require("../../images/peachflame.jpg")}
+              alt="logo"
+              id="logo"
+            />
             me{" "}
           </h1>
           <h2 style={styles.subHeader}> Editorial Services </h2>

@@ -26,7 +26,6 @@ app.use(bodyParser.json());
 const db = require("./config/keys").mongoURI;
 
 // morgan logging
-
 app.use(morganConfig);
 
 // Connect to MongoDB
