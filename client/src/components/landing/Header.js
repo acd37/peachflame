@@ -43,7 +43,7 @@ class Header extends Component {
             PeachFl
             <img
               style={styles.cardImage}
-              src={require("../../images/peachflame.jpg")}
+              src={require("../../images/peachflame.png")}
               alt="logo"
               id="logo"
             />

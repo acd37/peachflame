@@ -117,7 +117,7 @@ class Login extends Component {
 
         <div style={styles.loginWrapper}>
           <img
-            src={require("../images/peachflame.jpg")}
+            src={require("../images/peachflame.png")}
             style={styles.logo}
             alt="cs logo"
           />

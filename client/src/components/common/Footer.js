@@ -75,7 +75,7 @@ class Footer extends Component {
           <div style={styles.logoContainer}>
             <img
               style={styles.img}
-              src={require("../../images/peachflame.jpg")}
+              src={require("../../images/peachflame.png")}
               alt="iod logo"
             />
 
