@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import { Typography } from '@material-ui/core';
+import React, { Component } from "react";
+import { Typography } from "@material-ui/core";
 
 const styles = {
   container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    background: 'rgb(244, 245, 247)',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    background: "rgb(244, 245, 247)",
     paddingBottom: 80,
-    textAlign: 'center'
+    textAlign: "center"
   },
   text: {
-    fontSize: '2em',
-    fontWeight: '300',
-    color: 'rgb(37,56,88)'
+    fontSize: "2em",
+    fontWeight: "300",
+    color: "rgb(37,56,88)"
   },
   imageContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
     paddingTop: 60,
     paddingBottom: 60
   },
@@ -35,23 +35,23 @@ const styles = {
     marginBottom: 30
   },
   snippetHeader: {
-    color: 'rgb(37,56,88)',
-    fontSize: '1.2em',
+    color: "rgb(37,56,88)",
+    fontSize: "1.2em",
     marginBottom: 20,
     fontWeight: 600
   },
   snippet: {
-    color: 'rgb(37,56,88)',
-    fontSize: '1em'
+    color: "rgb(37,56,88)",
+    fontSize: "1em"
   },
   link: {
-    color: '#fc7867',
-    fontSize: '1em',
+    color: "#fc7867",
+    fontSize: "1em",
     marginTop: 10
   },
   svg: {
-    width: '100%',
-    transform: 'translateY(-80px)'
+    width: "100%",
+    transform: "translateY(-80px)"
   }
 };
 
@@ -80,13 +80,17 @@ class Objectives extends Component {
           </svg>
         </div>
         <Typography style={styles.text}>
-          Editorial services that get your manuscript where it needs to be{' '}
+          Editorial services that get your manuscript where it needs to be{" "}
           <strong>and</strong> keep you on the path to publication.
         </Typography>
 
         <div style={styles.imageContainer}>
           <div style={styles.imageBox}>
-            <img style={styles.image} src={require('../../images/chat.png')} alt="chat" />
+            <img
+              style={styles.image}
+              src={require("../../images/chat.png")}
+              alt="chat"
+            />
             <Typography style={styles.snippetHeader}>
               Clear Communication
             </Typography>
@@ -97,7 +101,11 @@ class Objectives extends Component {
             </Typography>
           </div>
           <div style={styles.imageBox}>
-            <img style={styles.image} src={require('../../images/contract.png')} alt="contracts" />
+            <img
+              style={styles.image}
+              src={require("../../images/contract.png")}
+              alt="contracts"
+            />
             <Typography style={styles.snippetHeader}>
               Clear Expectations
             </Typography>
@@ -109,7 +117,11 @@ class Objectives extends Component {
             </Typography>
           </div>
           <div style={styles.imageBox}>
-            <img style={styles.image} src={require('../../images/credit-cards-payment.png')} alt="payments" />
+            <img
+              style={styles.image}
+              src={require("../../images/credit-cards-payment.png")}
+              alt="payments"
+            />
             <Typography style={styles.snippetHeader}>
               Digital Security
             </Typography>
