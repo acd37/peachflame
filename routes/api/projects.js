@@ -158,7 +158,7 @@ router.delete(
 // @desc    Get project financial data
 // @access  Private
 router.get(
-  "/data",
+  "/data/:selectedYear",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     console.log(req.body);
@@ -181,7 +181,7 @@ router.get(
           dec: 0
         };
 
-        const currentYear = new Date().getFullYear();
+        const currentYear = req.params.selectedYear;
 
         for (var i = 0; i < projects.length; i++) {
           if (
@@ -229,7 +229,7 @@ router.get(
             }
           }
         }
-
+        console.log(data);
         res.json(data);
       })
       .catch(err => {

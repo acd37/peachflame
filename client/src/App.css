@@ -61,6 +61,24 @@ h2 {
   background-color: #fff;
 }
 
+/* year select css */
+.year-select-css {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 0.8rem 1.4rem 0.8rem 0.8rem;
+  width: 150px;
+  max-width: 90%;
+  margin-top: 20px;
+  border: none;
+  box-shadow: 0 12px 15px rgba(0, 0, 0, 0.1), 0 17px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+  background-color: #fff;
+}
+
 .select-css-date {
   appearance: none;
   -moz-appearance: none;
