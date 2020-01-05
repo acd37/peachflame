@@ -9,7 +9,7 @@ import {
   MenuItem
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import logo from "../../images/peachflame.jpg";
+import logo from "../../images/peachflame.png";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

@@ -3,7 +3,6 @@ import { getProjectData } from "../../actions/projectActions";
 import { connect } from "react-redux";
 import DataCard from "./DataCard";
 import InputLabel from "../common/InputLabel";
-import CustomInput from "../common/CustomInput";
 
 const styles = {
   cardContainer: {
