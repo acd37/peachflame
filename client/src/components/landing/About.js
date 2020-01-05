@@ -61,13 +61,13 @@ class About extends Component {
             <img
               className="image_logo"
               style={styles.logo}
-              src={require("../../images/iod.png")}
+              src={require("../../images/iod.jpg")}
               alt="iod logo"
             />
             <img
               className="image_logo"
               style={styles.logo}
-              src={require("../../images/utah.png")}
+              src={require("../../images/utah.jpg")}
               alt="utah logo"
             />
             <img
@@ -85,13 +85,13 @@ class About extends Component {
             <img
               className="image_logo"
               style={styles.logo}
-              src={require("../../images/trilogy.png")}
+              src={require("../../images/trilogy.jpg")}
               alt="trilogy logo"
             />
             <img
               className="image_logo"
               style={styles.logo}
-              src={require("../../images/2u.png")}
+              src={require("../../images/2u.jpg")}
               alt="2u logo"
             />
           </div>
