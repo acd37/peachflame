@@ -321,6 +321,7 @@ class EditProject extends Component {
               <div>
                 <InputLabel htmlFor="hours" text="Hours" />
                 <CustomInput
+                  step="0.01"
                   type="number"
                   name="hours"
                   value={this.state.hours}
