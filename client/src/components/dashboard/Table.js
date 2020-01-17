@@ -1,11 +1,29 @@
-import React, { Component } from "react";
+import React, { Component, forwardRef } from "react";
 import MaterialTable from "material-table";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { deleteProject } from "../../actions/projectActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Check } from "@material-ui/icons";
+import {
+  Check,
+  Delete,
+  Search,
+  Clear,
+  FirstPage,
+  LastPage,
+  ChevronLeft,
+  ChevronRight
+} from "@material-ui/icons";
+
+const tableIcons = {
+  Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+  FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+  LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+  Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+  NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+  PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />)
+};
 
 class Table extends Component {
   handleDelete = project => {
@@ -22,6 +40,7 @@ class Table extends Component {
     return (
       <div style={{ maxWidth: "100%", margin: 30 }}>
         <MaterialTable
+          icons={tableIcons}
           style={{
             borderRadius: 10
           }}
@@ -32,10 +51,6 @@ class Table extends Component {
               textTransform: "uppercase",
               fontSize: "0.7rem",
               color: "rgba(0,0,0,0.5)"
-            },
-            searchFieldStyle: {
-              width: 400,
-              padding: 3
             }
           }}
           columns={[
@@ -147,13 +162,10 @@ class Table extends Component {
               if (project.payment_status === "paid") return <Check />;
             })(),
             actions: (
-              <i
-                className="material-icons"
-                style={{ cursor: "pointer" }}
+              <Delete
                 onClick={() => this.handleDelete(project)}
-              >
-                delete
-              </i>
+                style={{ cursor: "pointer" }}
+              />
             )
           }))}
           title="Projects"

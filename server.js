@@ -6,12 +6,10 @@ const passport = require("passport");
 const path = require("path");
 const chalk = require("chalk");
 const compression = require("compression");
-const { morganConfig } = require("./config/morganConfig");
-
+const morganConfig = require("./config/morganConfig").morganConfig;
 const users = require("./routes/api/users");
 const projects = require("./routes/api/projects");
 const email = require("./routes/api/email");
-
 const port = process.env.PORT || 5000;
 const app = express();
 
@@ -49,8 +47,7 @@ app.use("/api/email", email);
 if (process.env.NODE_ENV === "production") {
   // set static folder
   app.use(express.static("client/build"));
-
-  app.get("*", (req, res) => {
+  app.get("*", function(req, res) {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }

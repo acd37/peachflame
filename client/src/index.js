@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import * as serviceWorker from "./sw";
 
 // styles
 import "./index.css";
@@ -28,3 +29,4 @@ ReactDOM.render(
   </Router>,
   document.getElementById("root")
 );
+serviceWorker.register();

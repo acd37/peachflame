@@ -8,6 +8,7 @@ const styles = {
   cardContainer: {
     display: "flex",
     justifyContent: "flex-start",
+    flexWrap: "wrap",
     margin: 30
   }
 };

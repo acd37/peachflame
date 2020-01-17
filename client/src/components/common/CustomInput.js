@@ -18,6 +18,7 @@ const styles = {
 export default function CustomInput(props) {
   return (
     <input
+      step={props.step && props.step}
       type={props.type}
       style={styles.customInput}
       name={props.name}

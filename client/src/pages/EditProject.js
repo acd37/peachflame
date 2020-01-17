@@ -258,6 +258,7 @@ class EditProject extends Component {
               <div>
                 <InputLabel htmlFor="project_fee" text="* Project fee" />
                 <CustomInput
+                  step="0.01"
                   type="number"
                   name="project_fee"
                   value={this.state.project_fee}
