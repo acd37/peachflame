@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import * as serviceWorker from "./sw";
+import * as serviceWorker from "./serviceWorker.js";
 
 // styles
 import "./index.css";

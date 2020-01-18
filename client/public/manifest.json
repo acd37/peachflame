@@ -3,8 +3,9 @@
   "short_name": "Peachflame",
   "icons": [
     {
-      "src": "/public/peachflame.png",
-      "type": "image/png"
+      "src": "/peachflame.png",
+      "type": "image/png",
+      "sizes": "500x500"
     }
   ],
   "start_url": ".",
