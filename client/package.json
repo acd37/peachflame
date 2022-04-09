@@ -12,7 +12,7 @@
     "classnames": "^2.2.6",
     "jwt-decode": "^2.2.0",
     "material-table": "^1.52.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "nodemailer": "^6.2.1",
     "react": "^16.8.6",
     "react-alert": "^6.0.0",
